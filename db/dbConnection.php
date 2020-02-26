@@ -137,5 +137,58 @@
 
 
     /**********  functions for Areas table ************/
-
+	// search and list areas with particular prog_id
+	function getAreas($prog_id) {
+		global $connection;
+		$query = "SELECT * FROM areas WHERE prog_id = '$prog_id' ORDER BY area_id";
+		$result = $connection->query($query);
+		if($result == false){
+            display_db_error($connection->error);
+        }
+		$areas = array();
+		for ($i = 0; $i < $result->num_rows; $i++) {
+			$areas[$i] = $result->fetch_assoc();
+		}
+		$result->free();
+		return $areas;
+	}
+	
+	// add a new area
+	function addArea($prog_id, $area) {
+		global $connection;
+		$query = "INSERT INTO areas (area_id, prog_id, area) VALUES (null, '$prog_id', '$area')";
+		$addStatement = $connection->prepare($query);
+        if($addStatement == false){
+           display_db_error($connection->error);
+        }
+		$exe = $addStatement->execute();
+		
+		return $exe;
+	}
+	
+	// delete an area
+   function deleteArea($area_id) {
+		global $connection;
+		$query = "DELETE FROM areas WHERE area_id = '$area_id'";
+		$deleteStatement = $connection->prepare($query);
+		if($deleteStatement == false){
+			display_db_error($connection->error);
+		}
+		$exe = $deleteStatement->execute();
+		
+		return $exe;
+   }
+   
+   // update an area
+   function updateArea($area_id, $area) {
+		global $connection;
+		$query = "UPDATE areas SET area = '$area' WHERE area_id = '$area_id'";
+		$updateStatement = $connection->prepare($query);
+		if($updateStatement == false){
+			display_db_error($connection->error);
+		}
+		$exe = $updateStatement->execute();
+		
+		return $exe;
+   }
 ?>
