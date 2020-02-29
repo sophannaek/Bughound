@@ -133,6 +133,118 @@
     }
 
     /**********  functions for Employees table ************/
+    
+    
+    function addEmployee($user_id, $user_name,$user_password,$user_level){
+        global $connection; 
+        echo "inside add employee<br/>";
+        echo $user_id, $user_name,$user_password,$user_level ."<br/>";
+        
+      //  $query= "INSERT INTO programs (program_name, program_release, program_version) VALUES ('$prog_name','$prog_release', '$prog_version')";
+
+        $query='INSERT INTO employees
+                (name, username, password, userlevel) VALUES (?,?,?,?)';
+        $statement = $connection->prepare($query);
+        if($statement == false){
+           // display_db_error($connection->error);
+        }
+        $statement->bind_param("sssi",$user_id, $user_name,$user_password,$user_level);
+        $success = $statement->execute();
+        echo "success " .$success;
+     //?   
+        if($success){
+            $prog_id = $connection->insert_id;
+            $statement->close();
+            $message="<span style='color:green'>A new program was added.</span>";
+            return $prog_id;
+            
+        }else{
+            $message="<span style='color:red'>A new program failed to be added.</span>";
+        }
+        echo $message; 
+    }
+    
+          /* update a program */
+    function updateEmployee($emp_id, $user_id, $user_name, $user_password, $user_level){
+        global $connection;
+        // $product_id_esc = $connection->escape_string($product_id);
+        $query = "UPDATE employees
+                    SET name = ?,
+                        username = ?,
+                        password = ?,
+                        userlevel = ?
+                    WHERE emp_id =  ?" ;
+        $statement = $connection->prepare($query);
+        if($statement == false){
+            display_db_error($connection->error);
+        }
+        $statement->bind_param("sssii",$user_id, $user_name, $user_password, $user_level,$emp_id);
+        $success = $statement->execute();
+        if($success){
+            // $product_id = $connection->insert_id;
+            $row_count = $connection->affected_rows;
+            $statement->close();
+            return $row_count;
+        
+        } 
+        else{
+            display_db_error($connection->error);
+        }
+    }
+    
+      function deleteEmployee($emp_id){
+        global $connection;
+        echo 'emp id ' .$emp_id;
+        $query = "DELETE FROM employees WHERE emp_id ='$emp_id' ";
+        $statement= $connection->prepare($query);
+         if($statement == false){
+          display_db_error($connection->error);
+        }
+        //$statement->bind_param("i",$emp_id);
+        $success = $statement->execute(); 
+       
+      //  echo $success;
+        if($success){
+          $statement->close();
+          echo "deleting....";
+          return $success;
+        }else {
+          display_db_error($connection->error);
+        }
+      
+      }
+    
+    /* get a program */
+    function getEmployee($emp_id){
+        global $connection; 
+        $query = "SELECT * FROM employees WHERE emp_id ='$emp_id'";
+        $result = $connection->query($query); 
+        if($result == false){
+            display_db_error($connection->error);
+        }
+        $employee =$result->fetch_assoc(); 
+    
+        $result ->free();
+        return $employee ;
+    }
+    
+    
+    /* list all employees */
+    function getEmployees(){
+        global $connection; 
+        $query = 'SELECT * FROM employees ORDER BY emp_id';
+        $result = $connection->query($query); 
+        if($result == false){
+            display_db_error($connection->error);
+        }
+        $employees = array(); 
+        for($i=0; $i <$result->num_rows; $i++){
+            $employee = $result->fetch_assoc();
+            $employees[] = $employee; 
+        }
+        $result->free();
+        return $employees;
+    }
 
 
 
