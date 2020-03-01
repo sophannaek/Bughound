@@ -8,9 +8,8 @@
   	$connection = new mysqli($dbhost, $dbuser, $dbpass,$dbname);
   	if ($connection->connect_error) {
           die($connection->connect_error);
-      }else{
-         // echo "database is connected!<br/>";
-      }
+    }
+    
     
     /* display error */
     function display_db_error($error_message){
@@ -18,6 +17,40 @@
         echo $error_message;
         exit;
     }
+
+    /** function for login  */
+    function isValidUser($user,$pass){
+        global $connection;
+        $query = "SELECT * FROM employees WHERE username ='$user' and password = '$pass' ";
+        $result = $connection->query($query); 
+
+        if($result == false){
+            display_db_error($connection->error);
+        }
+        return $result ;
+
+    }
+    function getUserLevel($user){
+        global $connection;
+        $query = "SELECT userlevel FROM employees WHERE username ='$user' ";
+        $result = $connection->query($query); 
+
+        if($result == false){
+            display_db_error($connection->error);
+        }
+        $userlevel = $result->fetch_assoc(); 
+        $result->free();
+        return $userlevel;
+    }
+
+    function destroySession(){
+        $_SESSION=array();
+
+        if (session_id() != "" || isset($_COOKIE[session_name()]))
+        setcookie(session_name(), '', time()-2592000, '/');
+            session_destroy();
+    }
+    
 
     /**********  functions for Programs table ************/
 
