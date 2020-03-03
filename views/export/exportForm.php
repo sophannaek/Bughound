@@ -48,23 +48,17 @@
 							break;
 							case ['XML', 'empl']:
 								$employees = getEmployees();	
-                                                                $table = 'employees';
+                                $table = 'employees';
 								exportXML($employees,$table);
 							break;
 							case ['XML', 'prog']:
-<<<<<<< HEAD
-								// programs for XML
-								$programs = getPrograms(); 
-								exportXML($programs,1);
-=======
 								$programs = getPrograms();
-                                                                $table = 'programs';
+                            	$table = 'programs';
 								exportXML($programs,$table);
->>>>>>> fdafa4876b216803ab01011cadbf71dd5b5e2e6e
-							break;
+								break;
 							case ['XML', 'area']:
 								$allAreas = getAllAreas();
-                                                                $table = 'areas';
+                                $table = 'areas';
 								exportXML($allAreas,$table);
 							break;
 						}
@@ -77,4 +71,3 @@
 </html>
 
 
-<a href = "./new.php">chech this</a>

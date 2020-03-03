@@ -22,7 +22,7 @@
                                         <label>User Level </label>
                                         <input type='number' id='user_level' name='user_level' /><br/><br/>
 					<input type="submit" name="submit" value="Submit">
-					<button type='button'>Cancel</button>
+					<button type='button' onclick="window.location.href = '../dbmaintenance.html';">Cancel</button>
 				</fieldset>
 			</form>
 		</div>

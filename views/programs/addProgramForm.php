@@ -21,7 +21,7 @@
 					<label>Program version: </label>
 					<input type='number' id='prog_version' name='prog_version' /><br/><br/>
 					<input type="submit" name="submit" value="Submit">
-					<button type='button'>Cancel</button>
+					<button type='button' onclick="window.location.href = '../dbmaintenance.html';">Cancel</button>
 				</fieldset>
 			</form>
 		</div>

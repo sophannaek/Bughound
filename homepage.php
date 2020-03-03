@@ -26,15 +26,17 @@
 			<?php 
 
 				if($userlevel == 3){
-					echo "<li><a href='dbmaintenance.php'>Database Maintenace</a></li>";
+					echo "<li><a href='./views/dbmaintenance.html'>Database Maintenace</a></li>";
 				}
 
-				echo "<p><i>User: ".$user.'User Level: '.$userlevel. '</i></p>';
+				echo "<p><i>User: ".$user.'  User Level: '.$userlevel. '</i></p>';
 			?>
 			
 		</ul>
-		
-		<a href="./logout.php">logout</a>
+
+		<button type='button' onclick="window.location.href = './logout.php';">logout</button>
+
+
 	</body>
 	
 </html>
