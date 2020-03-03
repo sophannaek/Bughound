@@ -46,13 +46,19 @@
 								exportASCII($allAreas);
 							break;
 							case ['XML', 'empl']:
-								// employees for XML
+								$employees = getEmployees();	
+                                                                $table = 'employees';
+								exportXML($employees,$table);
 							break;
 							case ['XML', 'prog']:
-								// programs for XML
+								$programs = getPrograms();
+                                                                $table = 'programs';
+								exportXML($programs,$table);
 							break;
 							case ['XML', 'area']:
-								// areas for XML
+								$allAreas = getAllAreas();
+                                                                $table = 'areas';
+								exportXML($allAreas,$table);
 							break;
 						}
 						exit(0);
