@@ -54,6 +54,7 @@ function exportXMLFile($array,$arrayName){
 		$column_num = sizeof($keys);
 		
 		// Get the max lenght of each column
+		echo "<table align='center'><tr><td><pre>";
 		$lenghts = array();
 		for ($i=0; $i<$column_num; $i++) $lenghts[$i] = strlen($keys[$i]);
 		foreach ($data as $row) {
@@ -66,20 +67,21 @@ function exportXMLFile($array,$arrayName){
                 
                 foreach ($data as $row) {
                     // echo '&lt;'.'table name="'.$tablen.'"'.'&gt;';
-                    echo '&lt;'.'table name="'.$tablen.'"'.'&gt;';
+                    echo "\t&lt;".'table name="'.$tablen.'"'.'&gt;';
                     echo '<br>';
                     for ($i=0; $i<$column_num; $i++) {                      
                         // echo '&lt;'.'column name="'.$keys[$i].'"'.'&gt;'.$row[$keys[$i]];
-                        echo '&lt;'.$keys[$i].'&gt;'.$row[$keys[$i]];
+                        echo "\t\t&lt;".$keys[$i].'&gt;'.$row[$keys[$i]];
                         echo '&lt;/'.$keys[$i].'&gt;';
                         echo '<br>';
                         
                     }
-                    echo '&lt;'.'/table'.'&gt;';
+                    echo "\t&lt;".'/table'.'&gt;';
                     echo '<br>';
                 }
                 echo '&lt;'.'/database'.'&gt;';
-                    echo '<br>';
+		echo '<br>';
+		echo "</pre></tr></td></table>";
 	}
 ?>
 
