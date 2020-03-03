@@ -1,8 +1,7 @@
 <?php
 	require_once '../../db/dbConnection.php';
 	include 'exportASCII.php';
-	include 'exportXML.php'
-	// include exportXML.php
+	include 'exportXML.php
 ?>
 
 <html>
