@@ -297,6 +297,22 @@
 		$result->free();
 		return $areas;
 	}
+
+	// search and list all areas
+	function getAllAreas() {
+		global $connection;
+		$query = "SELECT * FROM areas ORDER BY area_id";
+		$result = $connection->query($query);
+		if($result == false){
+            display_db_error($connection->error);
+        }
+		$areas = array();
+		for ($i = 0; $i < $result->num_rows; $i++) {
+			$areas[$i] = $result->fetch_assoc();
+		}
+		$result->free();
+		return $areas;
+	}
 	
 	// add a new area
 	function addArea($prog_id, $area) {
