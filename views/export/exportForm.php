@@ -1,6 +1,7 @@
 <?php
 	require_once '../../db/dbConnection.php';
 	include 'exportASCII.php';
+	include 'exportXML.php'
 	// include exportXML.php
 ?>
 
@@ -26,7 +27,7 @@
 					<option value="XML">XML</option>
 				</select>
 				<button type="submit" formatted="post">submit</button>
-				<button type="button" onclick="window.location.href = 'dbmaintenance.html';">cancel</button>
+				<button type="button" onclick="window.location.href = '../dbmaintenance.html';">cancel</button>
 			</form><center>
 			<br>
 			<center>
@@ -50,6 +51,8 @@
 							break;
 							case ['XML', 'prog']:
 								// programs for XML
+								$programs = getPrograms(); 
+								exportXML($programs,1);
 							break;
 							case ['XML', 'area']:
 								// areas for XML
@@ -64,3 +67,4 @@
 </html>
 
 
+<a href = "./new.php">chech this</a>
