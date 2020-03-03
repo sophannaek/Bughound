@@ -29,43 +29,43 @@
 				<button type="submit" formatted="post">submit</button>
 				<button type="button" onclick="window.location.href = '../dbmaintenance.html';">cancel</button>
 			</form><center>
-			<br>
-			<center>
-				<?php
-					if (isset($_POST['type']) && isset($_POST['table'])) {
-						switch ([$_POST['type'], $_POST['table']]) {
-							case ['ASCII', 'empl']:
-								$employees = getEmployees();	// I do not find getEmployees function, please check it, thanks.
-								exportASCII($employees);
+		</div>
+		<br>
+		<div class="export">
+			<?php
+				if (isset($_POST['type']) && isset($_POST['table'])) {
+					switch ([$_POST['type'], $_POST['table']]) {
+						case ['ASCII', 'empl']:
+							$employees = getEmployees();	// I do not find getEmployees function, please check it, thanks.
+							exportASCII($employees);
+						break;
+						case ['ASCII', 'prog']:
+							$programs = getPrograms();
+							exportASCII($programs);
+						break;
+						case ['ASCII', 'area']:
+							$allAreas = getAllAreas();
+							exportASCII($allAreas);
+						break;
+						case ['XML', 'empl']:
+							$employees = getEmployees();
+							$table = 'employees';
+							exportXML($employees,$table);
+						break;
+						case ['XML', 'prog']:
+							$programs = getPrograms();
+                           	$table = 'programs';
+							exportXML($programs,$table);
 							break;
-							case ['ASCII', 'prog']:
-								$programs = getPrograms();
-								exportASCII($programs);
-							break;
-							case ['ASCII', 'area']:
-								$allAreas = getAllAreas();
-								exportASCII($allAreas);
-							break;
-							case ['XML', 'empl']:
-								$employees = getEmployees();	
-                                $table = 'employees';
-								exportXML($employees,$table);
-							break;
-							case ['XML', 'prog']:
-								$programs = getPrograms();
-                            	$table = 'programs';
-								exportXML($programs,$table);
-								break;
-							case ['XML', 'area']:
-								$allAreas = getAllAreas();
-                                $table = 'areas';
-								exportXML($allAreas,$table);
-							break;
-						}
-						exit(0);
+						case ['XML', 'area']:
+							$allAreas = getAllAreas();
+							$table = 'areas';
+							exportXML($allAreas,$table);
+						break;
 					}
-				?>
-			</center>
+					exit(0);
+				}
+			?>
 		</div>
 	</body>
 </html>
