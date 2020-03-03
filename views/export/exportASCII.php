@@ -21,7 +21,7 @@
 		}
 		$rowFrame = $rowFrame . '<br>';
 		
-		echo '<tt>';
+		echo '<center><tt>';
 		
 		echo $rowFrame;
 		
@@ -39,6 +39,6 @@
 			echo $rowFrame;
 		}
 		
-		echo '</tt>';
+		echo '</tt></center>';
 	}
 ?>
