@@ -46,20 +46,20 @@
 					echo "<tr><th>Area ID</th><th>Program ID</th><th>Area</th><th></th></tr>";
 					foreach ($areas as $area) {
 						echo "<tr>";
-						echo "<form action=\"updateArea.php\" method=\"post\">";
+						echo "<form action=\"updateArea.php\" method=\"post\" onsubmit=\"return checkValue(this)\">";
 							echo "<td>" . $area['area_id'] . "<input type=\"hidden\" name=\"area_id\" value=" . $area['area_id'] . "> </td>";
 							echo "<td>" . $area['prog_id'] . "<input type=\"hidden\" name=\"prog_id\" value=" . $area['prog_id'] . "> </td>";
-							echo "<td><input type=\"text\" name=\"area\" value=\"" . $area['area'] . "\" size=50>";
+							echo "<td><input type=\"text\" name=\"area\" value=\"" . $area['area'] . "\" size=50 id=\"area\">";
 							echo "<td><button type=\"submit\" name=\"update\">update</button>  <input type=\"button\" value=\"delete\" onclick=\"location.href='deleteArea.php?area_id=" . $area['area_id'] . "&prog_id=" . $area['prog_id'] . "'\"></td>";
 						echo "</form>";
 						echo "</tr>";
 					}
 					
 					echo "<tr>";
-					echo "<form action=\"addArea.php\" method=\"post\">";
+					echo "<form action=\"addArea.php\" method=\"post\" onsubmit=\"return checkValue(this)\">";
 						echo "<td>Add</td>";
 						echo "<td>" . $prog_id . "<input type=\"hidden\" name=\"prog_id\" value=" . $prog_id . "> </td>";
-						echo "<td><input type=\"text\" name=\"area\" size=50></td>";
+						echo "<td><input type=\"text\" name=\"area\" size=50 id=\"area\"></td>";
 						echo "<td><button type=\"submit\" formatted=\"post\" name=\"addArea\">Add Area</button></td>";
 					echo "</form>";
 					echo "</tr>";
@@ -71,3 +71,13 @@
 		</div>
 	</body>
 </html>
+
+<script>
+	function checkValue(form) {
+		if (form.area.value == "") {
+			alert("Warning: area description cannot be empty.");
+			return false;
+		}
+		return true;
+	}
+</script>
