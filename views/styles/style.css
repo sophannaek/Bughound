@@ -6,4 +6,38 @@ ul{
 }
 body{
 	text-align:center;
+	background-color:lightgray;
+}
+
+#login-form{
+	padding:5% 5%;
+	width:80%;
+	background-color: white;
+	border-radius:0.5%;
+	height:450px;
+	
+}
+
+
+#submit-btn{
+	width:82.5%;
+	background-color:#0B4C5F;
+	border-radius:0.4em;
+	height:40px;
+	color:white;
+	font-size:14px;
+	
+}
+#password, #username{
+	width:80%;
+	height:40px;
+	font-size:14px;
+	
+
+}
+li {
+	padding:0.5em 0.5em;
+}
+a:hover{
+	color:gray;
 }

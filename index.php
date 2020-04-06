@@ -7,7 +7,7 @@
 		
 		if($user =="" || $pass==""){
 			$error="<span style='color:red'>Not all fields were entered!</span> "; 
-			echo $error; 
+			
 		}else{
 		
 			echo $user. " ".$pass;
@@ -36,24 +36,30 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Login</title>
-		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" type="text/css" href="./views/styles/style.css">
 	</head>
 	<body>
-		<div class='container' style='margin-top:3em;width:60%; margin-left:20%' >
+		<div class='container' id='login-form' style='margin-top:3em;width:40%; margin-left:20%' >
 		
-			<form action='index.php' method='post'>
-				<fieldset>
-					<center><legend>Please Log In:</legend> </center><br/>
-				<center><label>Username: </label>
-					<input type='text' id='username' name='username'/><br/><br/>
-					<label>Password: </label>
-					<input type='text' id='password' name='password'/><br/><br/>
+			<form action='index.php'  method='post'>
+				<!-- <fieldset> -->
+					<!-- <center><legend>Please Log In:</legend> </center><br/> -->
+					<center><h3>Bughound</h3></center>
+				<!-- <center><label>Username: </label> -->
+					<input type='text' id='username' placeholder='  username' name='username'/><br/><br/>
+					<!-- <label>Password: </label> -->
+					<p>
+
+					<input type='text' id='password' placeholder='  password' name='password'/></p>
+					<p><?php echo $error; ?></p>
+					<p><input type="submit" id='submit-btn' name="submit"  value="Submit"></p>
 					</center>
 					<center>
-						<input type="submit" name="submit"  value="Submit">
-						<button type='button' id='cancel'>Cancel</button>
+					<p style='color:#0B4C5F'>Forgot Password?</p>
+						
+						
 					</center>
-				</fieldset>
+				<!-- </fieldset> -->
 			</form>
 		</div>
 
