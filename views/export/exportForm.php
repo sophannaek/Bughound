@@ -50,17 +50,17 @@
 						case ['XML', 'empl']:
 							$employees = getEmployees();
 							$table = 'employees';
-							exportXML($employees,$table);
+							exportXMLFile($employees,$table);
 						break;
 						case ['XML', 'prog']:
 							$programs = getPrograms();
                            	$table = 'programs';
-							exportXML($programs,$table);
+							exportXMLFile($programs,$table);
 							break;
 						case ['XML', 'area']:
 							$allAreas = getAllAreas();
 							$table = 'areas';
-							exportXML($allAreas,$table);
+							exportXMLFile($allAreas,$table);
 						break;
 					}
 					exit(0);

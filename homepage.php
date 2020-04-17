@@ -2,7 +2,7 @@
 	session_start();
 	require_once './db/dbConnection.php';
 	if (isset($_SESSION['username'])){
-		$user=$_SESSION['username'];
+		$user =$_SESSION['username'];
 		$userlevel = getUserLevel($user)['userlevel'];
 		
 	}else{
@@ -12,18 +12,23 @@
 
 
 <!DOCTYPE html>
-<html style='background-color:white'>
+<html>
 	<head>
 		<meta charset="UTF-8">
 		<title>Bughound Homepage</title>
 		<link rel="stylesheet" type="text/css" href="./views/styles/style.css">
+		<style>
+			body{
+				background-color:white;
+			}
+		</style>
 	</head>
 	<body>
-		<div>
+		<div >
 		
-			<h3>Welcome to Bughound</h3>
+			<h3>Welcome to Bughound Software</h3>
 			<ul>
-				<li><a href=''>Enter NEW Bug</a></li>
+				<li><a href='views/bugs/addBugForm.php'>Enter NEW Bug</a></li>
 				<li><a href=''>Update EXISTING Bug</a></li>
 				<?php 
 

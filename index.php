@@ -42,12 +42,9 @@
 		<div class='container' id='login-form' style='margin-top:3em;width:40%; margin-left:20%' >
 		
 			<form action='index.php'  method='post'>
-				<!-- <fieldset> -->
-					<!-- <center><legend>Please Log In:</legend> </center><br/> -->
-					<center><h3>Bughound</h3></center>
-				<!-- <center><label>Username: </label> -->
+					<center><h3>Bughound Software</h3></center>
+			
 					<input type='text' id='username' placeholder='  username' name='username'/><br/><br/>
-					<!-- <label>Password: </label> -->
 					<p>
 
 					<input type='text' id='password' placeholder='  password' name='password'/></p>

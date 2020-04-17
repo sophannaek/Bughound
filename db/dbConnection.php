@@ -352,4 +352,39 @@
 		
 		return $exe;
    }
+ 
+   /******************* Functions for Bugs ************************/
+
+
+   /* adding new bug */
+   function addBug($reportType ,$severity, $problem_summary,$reproducible,$problem, $reportedBy,
+   $reportedByDate, $functionalArea, $assignedTo, $comments, $status, $priority, $resolution, $resolutionVersion,
+   $resolvedBy, $resolvedByDate, $testedBy, $testedByDate, $deferred ){
+        global $connection; 
+
+        $query='INSERT INTO bugs
+                (reportType, severity, programSummary,reproducible,problem,suggestedFix, reportedBy,
+                reportedByDate,functionalArea, assignedTo,comments,bugStatus,priority, resolution,resolutionVersion,
+                resolvedBy,resolvedByDate,testedBy,testedByDate, treatAsDeferred) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?
+                ?,?,?,?,?,?,?)';
+        
+        $statement = $connection->prepare($query);
+        if($statement == false){
+           // display_db_error($connection->error);
+        }
+        $statement->bind_param("sii",$prog_name, $prog_release,$prog_version);
+        $success = $statement->execute();
+        echo "success " .$success;
+        
+        if($success){
+            $bug_id = $connection->insert_id;
+            $statement->close();
+            $message="<span style='color:green'>A new bug was added.</span>";
+            return $bug_id;
+            
+        }else{
+            $message="<span style='color:red'>A new bug failed to be added.</span>";
+        }
+        echo $message; 
+   }
 ?>
