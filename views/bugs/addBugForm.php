@@ -31,8 +31,7 @@
 		<hr/>
 		<form action='addBugs.php' method='post'>
 			<label>Program</label>
-			<select id='prog_name'>
-				<!-- need to retrieve data from program table --> 
+			<select id='prog_name' name='prog_id'>
 				<?php
 					foreach($programs as $program){
 						echo "<option value ='".$program['prog_id']."'>".$program['program']."</option>";
@@ -42,7 +41,7 @@
 			
 			</select>
 			<label> Report Type</label>
-			<select id='reportType' name='reportType'>
+			<select id='reportType' name="reportType">
 				<option value="Design Issue">Design Issue</option>
 				<option value="Coding Error">Coding Error</option>
 				<option value='Suggestion'>Suggestion</option>
@@ -80,12 +79,12 @@
 					?>
 				</select>
 				<label>Date</label>
-				<input type='date' id='reportedByDate' name='reportedByDate' min="2018-01-01" max="2018-12-31"/>
+				<input type='date' placeholder='YYYY-MM-DD' name='reportedByDate' min="2018-01-01" max="2018-12-31"/>
 			</p>
 			<hr/>
 			<p>
 				<label> Functional Area</label>
-				<select id='functional_area'>
+				<select id='functional_area' name='functionalArea'>
 					<option></option>
 					<?php 
 						foreach($areas as $area){
@@ -94,9 +93,9 @@
 					?>
 				</select>
 				<label>Assigned To </label>
-				<select id='assignedTo'>
+				<select id='assignedTo' name='assignedTo'>
 				<!-- extract to the database -->
-					<option></option>
+					<option value=''></option>
 					<?php 
 						foreach($employees as $employee){
 							echo "<option value ='".$employee['emp_id']."'>".$employee['name']."</option>";
@@ -111,7 +110,7 @@
 			</p>
 			<p>
 				<label>Status</label>
-				<select id='status'>
+				<select id='status' name='status'>
 					<option value="Open">Open</option>
 					<option value='Closed or Open'>Closed or Open</option>
 					<option value='Closed'>Closed</option>
@@ -119,17 +118,17 @@
 				</select>
 				
 				<label>Priority</label>
-				<select id='priority'>
+				<select id='priority' name='priority'>
 					<!-- assigned by manager only  -->
 					<option value=''></option>
 					<?php 
 						if ($userlevel == 3){
 							echo "<option value='Fix immediately'>Fix immediately</option>
 							<option value='Fix as soon as possible'>Fix as soon as possible</option>
-							<option>Fix before next milestone</option>
-							<option>Fix before release</option>
-							<option>Fix if possible</option>
-							<option>Optional</option>";
+							<option value='Fix before next milestone'>Fix before next milestone</option>
+							<option value='Fix before release'>Fix before release</option>
+							<option value='Fix if possible'>Fix if possible</option>
+							<option value='Optional'>Optional</option>";
 						}
 					?>
 					
@@ -148,13 +147,13 @@
 					<option value='Duplicate'>Duplicate</option>
 				</select>
 				<label>Resolution Version</label>
-				<input type='number' id='resolutionVersion' name='resolutionVersion'/>
+				<input type='text' id='resolutionVersion' name='resolutionVersion'/>
 
 				
 			</p>
 			<p>
 				<label>Resolved By</label>
-				<select>
+				<select name='resolvedBy'>
 					<option></option>
 					<?php 
 						foreach($employees as $employee){
@@ -165,8 +164,8 @@
 				<label>Date</label>
 				<input type='text' id='resolvedByDate' name='resolvedByDate'/>
 				<label>Tested by</label>
-				<select>
-					<option></option>
+				<select name='testedBy'>
+					<option value=null></option>
 					<?php 
 						foreach($employees as $employee){
 							echo "<option value ='".$employee['emp_id']."'>".$employee['name']."</option>";

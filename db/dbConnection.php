@@ -357,34 +357,75 @@
 
 
    /* adding new bug */
-   function addBug($reportType ,$severity, $problem_summary,$reproducible,$problem, $reportedBy,
+   //21 parameters
+   function addBug($reportType ,$severity, $problem_summary,$reproducible,$problem, $suggestedFix,$reportedBy,
    $reportedByDate, $functionalArea, $assignedTo, $comments, $status, $priority, $resolution, $resolutionVersion,
-   $resolvedBy, $resolvedByDate, $testedBy, $testedByDate, $deferred ){
+   $resolvedBy, $resolvedByDate, $testedBy, $testedByDate, $deferred,$prog_id ){
         global $connection; 
+        echo "adding bugs......";
+        
+  echo 'prog id: '.$prog_id.'<br/>';
+  echo 'report type: '.$reportType.'<br/>';
+  echo 'serverity: '.$severity.'<br/>';
+  echo "problem summary..".$problem_summary.'<br/>';
+  echo 'reproducilbe: '.$reproducible.'<br/>';
+  echo 'reportedBy: '.$reportedBy.'<br/>';
+  echo 'reportedByDate: '.$reportedByDate.'<br/>';
+  echo 'functional area: '.$functionalArea.'<br/>';
+  echo 'assignTo: '.$assignedTo.'<br/>';
+  echo 'comment: '.$comments.'<br/>';
+  echo 'status: '.$status.'<br/>';
+  echo 'priority: '.$priority.'<br/>';
+  echo 'resolution: '.$resolution.'<br/>';
+  echo 'resolutionversion: '.$resolutionVersion.'<br/>';
+  echo 'resolvedBy: '.$resolvedBy.'<br/>';
+  echo 'resolvedByDate: '.$resolvedByDate.'<br/>';
+  echo 'testedBy: '.$testedBy.'<br/>';
+  
 
-        $query='INSERT INTO bugs
-                (reportType, severity, programSummary,reproducible,problem,suggestedFix, reportedBy,
-                reportedByDate,functionalArea, assignedTo,comments,bugStatus,priority, resolution,resolutionVersion,
-                resolvedBy,resolvedByDate,testedBy,testedByDate, treatAsDeferred) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?
-                ?,?,?,?,?,?,?)';
+        $query="INSERT INTO bugs
+        (reportType, severity, problemSummary,reproducible,problem,suggestedFix, reportedBy,
+        reportedByDate,functionalArea, assignedTo,comments,bugStatus,priority, resolution,resolutionVersion,
+        resolvedBy,resolvedByDate,testedBy,testedByDate, treatAsDeferred,emp_id,prog_id) VALUES ('$reportType','$severity','$problem_summary','$reproducible','$problem',
+        '$suggestedFix','$reportedBy',date('$reportedByDate') ,'$functionalArea','$assignedTo','$comments', '$status', '$priority', '$resolution', '$resolutionVersion',
+        '$resolvedBy',".($resolvedByDate==NULL ? "NULL": "date('$resolvedByDate')").",'$testedBy',".($testedByDate ==NULL ? "NULL": "date('$testedByDate')").",'$deferred','$reportedBy',$prog_id )";
         
         $statement = $connection->prepare($query);
         if($statement == false){
-           // display_db_error($connection->error);
+
+           echo "statement is false";
         }
-        $statement->bind_param("sii",$prog_name, $prog_release,$prog_version);
         $success = $statement->execute();
-        echo "success " .$success;
-        
-        if($success){
-            $bug_id = $connection->insert_id;
-            $statement->close();
-            $message="<span style='color:green'>A new bug was added.</span>";
-            return $bug_id;
-            
-        }else{
-            $message="<span style='color:red'>A new bug failed to be added.</span>";
-        }
-        echo $message; 
+
+            if($success){
+                $bug_id = $connection->insert_id;
+                $statement->close();
+                $message="<span style='color:green'>A new bug was added.</span>";
+                return $bug_id;
+                
+            }else{
+                $message="<span style='color:red'>A new bug failed to be added.</span>";
+                
+                echo $connection->error;
+            }
+            echo $message;
+         
    }
+
+   /* list all bugs */
+    function getBugs(){
+        global $connection; 
+        $query = 'SELECT * FROM bugs ORDER BY bug_id';
+        $result = $connection->query($query); 
+        if($result == false){
+            display_db_error($connection->error);
+        }
+        $bugs = array(); 
+        for($i=0; $i <$result->num_rows; $i++){
+            $bugs = $result->fetch_assoc();
+            $bugs[] = $program; 
+        }
+        $result->free();
+        return $bugs;
+    }
 ?>
