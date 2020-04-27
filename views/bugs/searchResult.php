@@ -45,7 +45,7 @@
 	}
 	
 	// set up SQL
-	$SQL = "SELECT bugs.bug_id, bugs.problemSummary, programs.program FROM bugs";
+	$SQL = "SELECT bugs.*, programs.program FROM bugs";
 	$SQL = $SQL . " INNER JOIN programs ON bugs.prog_id = programs.prog_id WHERE '1=1'";
 	if (strcmp($prog_id, 'All') != 0) {
 		$SQL = $SQL . " AND bugs.prog_id='$prog_id'";
