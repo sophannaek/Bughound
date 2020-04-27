@@ -428,4 +428,19 @@
         $result->free();
         return $bugs;
     }
+
+	// Search bugs
+	function getSearchResult($SQL) {
+		global $connection;
+		$result = $connection->query($SQL);
+		if($result == false){
+            display_db_error($connection->error);
+        }
+		$bugs = array(); 
+        for($i=0; $i <$result->num_rows; $i++){
+            $bugs[$i] = $result->fetch_assoc();
+        }
+        $result->free();
+        return $bugs;
+	}
 ?>
