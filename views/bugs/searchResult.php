@@ -66,7 +66,7 @@
 		$SQL = $SQL . " AND bugs.reportedBy='$reportedBy'";
 	}
 	if (strcmp($status, 'All') != 0) {
-		$SQL = $SQL . " AND bugs.status='$status'";
+		$SQL = $SQL . " AND bugs.bugStatus='$status'";
 	}
 	if (strcmp($priority, 'All') != 0) {
 		$SQL = $SQL . " AND bugs.priority='$priority'";
