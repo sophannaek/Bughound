@@ -30,6 +30,7 @@
 			<ul>
 				<li><a href='views/bugs/addBugForm.php'>Enter NEW Bug</a></li>
 				<li><a href=''>Update EXISTING Bug</a></li>
+				<li><a href='views/bugs/searchBugs.php'>Search For Bugs</a></li>
 				<?php 
 
 					if($userlevel == 3){
