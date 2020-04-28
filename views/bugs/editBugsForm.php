@@ -197,6 +197,33 @@
 		</form>
 		
 	</body>
+	<script>
+		document.getElementById("reset").addEventListener("click", function(){
+			document.getElementById("prog_name").selectedIndex='0';
+			document.getElementById("reportType").selectedIndex='0';
+			document.getElementById("severity").selectedIndex='0';
+			document.getElementById('reproducible').checked = false;
+			document.getElementById("prob_summary").value = "";
+			document.getElementById('problem').value ="";
+			document.getElementById("reportedBy").selectedIndex='0';
+			document.getElementById('reportedByDate').value ='';		
+			document.getElemnetById('functional_area').selectedIndex ='0';
+			document.getElemnetById('assignedTo').selectedIndex ='0';
+			document.getElementById('comments').value ="";
+			document.getElemnetById('status').selectedIndex ='0';
+			document.getElemnetById('priority').selectedIndex ='0';
+			document.getElemnetById('resolution').selectedIndex ='0';
+			document.getElementById('resolutionVersion').value='';
+			document.getElementById('resolvedBy').selectedIndex='0';
+			document.getElementById('resolvedByDate').value='';
+			document.getElementById('testedBy').selectedIndex = '0';
+			document.getElementById('testedByDate').value = '';
 
+			document.getElementById('deferred').checked = false;
+
+
+		});
+
+	</script>
 	
 </html>
