@@ -25,10 +25,11 @@
 
 			
 	foreach($bugs as $bug){
+	    $prog = getProgram($bug['prog_id']);
 		echo '<tr>';
 		echo "<td><a href='editBugsForm.php?bid=".$bug['bug_id']."'>".$bug['bug_id']
 		
-		.'</td><td>'.$bug['reportType'].'</td><td>'.$bug['severity'].'</td><td>'.$bug['problemSummary'].'</td>';
+		.'</td><td>'.$prog['program'].'</td><td>'.$bug['reportType'].'</td><td>'.$bug['severity'].'</td><td>'.$bug['problemSummary'].'</td>';
 	}
 	
 	echo "</tr></table></center>";
