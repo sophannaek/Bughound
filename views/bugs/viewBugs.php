@@ -1,6 +1,7 @@
 <?php 
 	require_once '../../db/dbConnection.php';
 	$bugs = getBugs();
+	
 ?>
 
 <!DOCTYPE html>
@@ -19,22 +20,23 @@
 <?php
 
 
-  	echo "<center><table style='width:500px;text-align:center;border-bottom:1px solid lightgrey;'><tr><th>Program Name<th>".
-      "Report Type</th><th>Serverity</th><th>Program Summary</th></tr>";
+  	echo "<center><table style='width:500px;text-align:center;border-bottom:1px solid lightgrey;'><tr><th>Bug ID<th>".
+      "Report Type</th><th>Severity</th><th>Problem Summary</th></tr>";
 
 			
 	foreach($bugs as $bug){
 		echo '<tr>';
-		echo "<td><a href='editProgramForm.php?pid=".$program['prog_id']."'>".$program['prog_id'].'</td><td>'. $program['program']
-
-		.'</td><td>'.$program['program_release'].'</td><td>'.$program['program_version'].'</td><td>';
+		echo "<td><a href='editBugsForm.php?bid=".$bug['bug_id']."'>".$bug['bug_id']
+		
+		.'</td><td>'.$bug['reportType'].'</td><td>'.$bug['severity'].'</td><td>'.$bug['problemSummary'].'</td>';
 	}
-
+	
 	echo "</tr></table></center>";
 
 ?>
 <div class="container" style='margin-top:2em'>
-	<center><a href='../dbmaintenance.html'>dbmaintenance</a></center>
+	<center><button type='button' onclick="window.location.href = '../homepage.php';" >Homepage</button></center>
 </div>
+
 </body>
 </html>
