@@ -1,8 +1,21 @@
 <?php
+	session_start();
 	require_once '../../db/dbConnection.php';
+	
+	if (isset($_SESSION['username'])){
+		$user=$_SESSION['username'];
+		$userlevel = getUserLevel($user)['userlevel'];
+	} else {
+		echo '<script>alert("Error: Not logged in"); window.location.href="../../index.php";</script>';
+	}
+	
 	include 'exportASCII.php';
-	include 'exportXML.php'
-	// include exportXML.php
+	include 'exportXML.php';
+	
+	if (isset($_POST['type'])) $type = $_POST['type'];
+		else $type = null;
+	if (isset($_POST['table'])) $table = $_POST['table'];
+		else $table = null;
 ?>
 
 <html>
@@ -16,17 +29,18 @@
 		<div class="container">
 			<br>
 			<center><h2>Export</h2></center>
-			<center><form action="#" method="post">
+			<center><form action="export.php" method="post">
 				<select name="table">
-					<option value="empl">Employees</option>
-					<option value="prog">Programs</option>
-					<option value="area">Areas</option>
+					<option value="empl" <?php if(strcmp($table, 'empl')==0) echo 'selected'; ?>>Employees</option>
+					<option value="prog" <?php if(strcmp($table, 'prog')==0) echo 'selected'; ?>>Programs</option>
+					<option value="area" <?php if(strcmp($table, 'area')==0) echo 'selected'; ?>>Areas</option>
 				</select>
 				<select name="type">
-					<option value="ASCII">ASCII</option>
-					<option value="XML">XML</option>
+					<option value="ASCII" <?php if(strcmp($type, 'ASCII')==0) echo 'selected'; ?>>ASCII</option>
+					<option value="XML" <?php if(strcmp($type, 'XML')==0) echo 'selected'; ?>>XML</option>
 				</select>
-				<button type="submit" formatted="post">submit</button>
+				<button type="submit" formatted="post">download</button>
+				<button type="submit" formaction="#" formatted="post" >display</button>
 				<button type="button" onclick="window.location.href = '../dbmaintenance.html';">cancel</button>
 			</form><center>
 		</div>
@@ -36,7 +50,7 @@
 				if (isset($_POST['type']) && isset($_POST['table'])) {
 					switch ([$_POST['type'], $_POST['table']]) {
 						case ['ASCII', 'empl']:
-							$employees = getEmployees();	// I do not find getEmployees function, please check it, thanks.
+							$employees = getEmployees();
 							exportASCII($employees);
 						break;
 						case ['ASCII', 'prog']:
@@ -50,17 +64,17 @@
 						case ['XML', 'empl']:
 							$employees = getEmployees();
 							$table = 'employees';
-							exportXMLFile($employees,$table);
+							displayXML($employees,$table);
 						break;
 						case ['XML', 'prog']:
 							$programs = getPrograms();
                            	$table = 'programs';
-							exportXMLFile($programs,$table);
+							displayXML($programs,$table);
 							break;
 						case ['XML', 'area']:
 							$allAreas = getAllAreas();
 							$table = 'areas';
-							exportXMLFile($allAreas,$table);
+							displayXML($allAreas,$table);
 						break;
 					}
 					exit(0);

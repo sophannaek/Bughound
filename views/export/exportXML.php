@@ -6,7 +6,14 @@ function exportXMLFile($data = null, $tablen){
     $dom->encoding = 'utf-8';
     $dom->xmlVersion = '1.0';
     $dom->formatOutput = true;
-    $xml_file_name = 'export.xml';	
+	$xml_file_name = "export.xml";
+	if (strcmp($tablen, 'employees') == 0)
+		$xml_file_name = "employees.xml";
+	if (strcmp($tablen, 'programs') == 0)
+		$xml_file_name = "programs.xml";
+	if (strcmp($tablen, 'areas') == 0)
+		$xml_file_name = "areas.xml";
+    
     // Get keys and column number
     $keys = array_keys($data[0]);
     $column_num = sizeof($keys);
@@ -20,6 +27,12 @@ function exportXMLFile($data = null, $tablen){
         $dom->appendChild($root);
     }
     $dom->save($xml_file_name);
+	
+	header("Content-Type: text/xml");
+	header("Content-Disposition: attachment; filename= " . $xml_file_name);
+	readfile($xml_file_name);
+	
+	exit;
 }
        
 	
