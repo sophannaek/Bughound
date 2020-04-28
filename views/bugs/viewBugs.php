@@ -36,7 +36,7 @@
 
 ?>
 <div class="container" style='margin-top:2em'>
-	<center><button type='button' onclick="window.location.href = '../homepage.php';" >Homepage</button></center>
+	<center><button type='button' onclick="window.location.href = '../../homepage.php';" >Homepage</button></center>
 </div>
 
 </body>
