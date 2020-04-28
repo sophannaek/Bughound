@@ -7,8 +7,7 @@
 		$user=$_SESSION['username'];
 		$userlevel = getUserLevel($user)['userlevel'];
 	} else {
-		echo '<script>alert("Error: Not logged in")</script>';
-		header('Location: ../../index.php');
+		echo '<script>alert("Error: Not logged in"); window.location.href="../../index.php";</script>';
 	}
 
 	$programs = getPrograms();
@@ -16,64 +15,75 @@
 	$areas = getAllAreas();
 	
 	// get post data
-	if (isset($_POST['prog_id'])) {
-		$prog_id = $_POST['prog_id'];
+	if (isset($_POST['problem'])) {
+		$problem = $_POST['problem'];
 	}
-	if (isset($_POST['reportType'])) {
-		$reportType = $_POST['reportType'];
-	}
-	if (isset($_POST['severity'])) {
-		$severity = $_POST['severity'];
-	}
-	if (isset($_POST['functionalArea'])) {
-		$functionalArea = $_POST['functionalArea'];
-	}
-	if (isset($_POST['assignedTo'])) {
-		$assignedTo = $_POST['assignedTo'];
-	}
-	if (isset($_POST['reportedBy'])) {
-		$reportedBy = $_POST['reportedBy'];
-	}
-	if (isset($_POST['status'])) {
-		$status = $_POST['status'];
-	}
-	if (isset($_POST['priority'])) {
-		$priority = $_POST['priority'];
-	}
-	if (isset($_POST['resolution'])) {
-		$resolution = $_POST['resolution'];
+	if (!isset($_POST['quick'])) {
+		if (isset($_POST['prog_id'])) {
+			$prog_id = $_POST['prog_id'];
+		}
+		if (isset($_POST['reportType'])) {
+			$reportType = $_POST['reportType'];
+		}
+		if (isset($_POST['severity'])) {
+			$severity = $_POST['severity'];
+		}
+		if (isset($_POST['functionalArea'])) {
+			$functionalArea = $_POST['functionalArea'];
+		}
+		if (isset($_POST['assignedTo'])) {
+			$assignedTo = $_POST['assignedTo'];
+		}
+		if (isset($_POST['reportedBy'])) {
+			$reportedBy = $_POST['reportedBy'];
+		}
+		if (isset($_POST['status'])) {
+			$status = $_POST['status'];
+		}
+		if (isset($_POST['priority'])) {
+			$priority = $_POST['priority'];
+		}
+		if (isset($_POST['resolution'])) {
+			$resolution = $_POST['resolution'];
+		}
 	}
 	
 	// set up SQL
 	$SQL = "SELECT bugs.*, programs.program FROM bugs";
 	$SQL = $SQL . " INNER JOIN programs ON bugs.prog_id = programs.prog_id WHERE '1=1'";
-	if (strcmp($prog_id, 'All') != 0) {
-		$SQL = $SQL . " AND bugs.prog_id='$prog_id'";
+	if (strcmp($problem, '') != 0) {
+		$SQL = $SQL . " AND (bugs.problemSummary LIKE '%$problem%' OR bugs.problem LIKE '%$problem%')";
 	}
-	if (strcmp($reportType, 'All') != 0) {
-		$SQL = $SQL . " AND bugs.reportType='$reportType'";
+	if (!isset($_POST['quick'])) {
+		if (strcmp($prog_id, 'All') != 0) {
+			$SQL = $SQL . " AND bugs.prog_id='$prog_id'";
+		}
+		if (strcmp($reportType, 'All') != 0) {
+			$SQL = $SQL . " AND bugs.reportType='$reportType'";
+		}
+		if (strcmp($severity, 'All') != 0) {
+			$SQL = $SQL . " AND bugs.severity='$severity'";
+		}
+		if (strcmp($functionalArea, 'All') != 0) {
+			$SQL = $SQL . " AND bugs.functionalArea='$functionalArea'";
+		}
+		if (strcmp($assignedTo, 'All') != 0) {
+			$SQL = $SQL . " AND bugs.assignedTo='$assignedTo'";
+		}
+		if (strcmp($reportedBy, 'All') != 0) {
+			$SQL = $SQL . " AND bugs.reportedBy='$reportedBy'";
+		}
+		if (strcmp($status, 'All') != 0) {
+			$SQL = $SQL . " AND bugs.bugStatus='$status'";
+		}
+		if (strcmp($priority, 'All') != 0) {
+			$SQL = $SQL . " AND bugs.priority='$priority'";
+		}
+		if (strcmp($resolution, 'All') != 0) {
+			$SQL = $SQL . " AND bugs.resolution='$resolution'";
+		}
 	}
-	if (strcmp($severity, 'All') != 0) {
-		$SQL = $SQL . " AND bugs.severity='$severity'";
-	}
-	if (strcmp($functionalArea, 'All') != 0) {
-		$SQL = $SQL . " AND bugs.functionalArea='$functionalArea'";
-	}
-	if (strcmp($assignedTo, 'All') != 0) {
-		$SQL = $SQL . " AND bugs.assignedTo='$assignedTo'";
-	}
-	if (strcmp($reportedBy, 'All') != 0) {
-		$SQL = $SQL . " AND bugs.reportedBy='$reportedBy'";
-	}
-	if (strcmp($status, 'All') != 0) {
-		$SQL = $SQL . " AND bugs.bugStatus='$status'";
-	}
-	if (strcmp($priority, 'All') != 0) {
-		$SQL = $SQL . " AND bugs.priority='$priority'";
-	}
-	if (strcmp($resolution, 'All') != 0) {
-		$SQL = $SQL . " AND bugs.resolution='$resolution'";
-	}
+	
 	$SQL = $SQL . " ORDER BY bug_id";
 	
 	// get search result

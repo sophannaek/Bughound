@@ -7,8 +7,7 @@
 		$user=$_SESSION['username'];
 		$userlevel = getUserLevel($user)['userlevel'];
 	} else {
-		echo '<script>alert("Error: Not logged in")</script>';
-		header('Location: ../../index.php');
+		echo '<script>alert("Error: Not logged in"); window.location.href="../../index.php";</script>';
 	}
 
 	$programs = getPrograms();
@@ -27,6 +26,9 @@
 		<hr/>
 		<center>
 			<form action='searchResult.php' method='post'>
+				<label>Problem: </label>
+				<input type='text' id='problem' name='problem' style='width:350'>
+				<input type='submit' name='quick' value='quick search'>
 				<table width='400'>
 					<tr>
 						<th width='40%'></th>
@@ -128,23 +130,9 @@
 				</table>
 				<hr/>
 				<input type="submit" name="submit" value="Submit">
-				<button type='button' id='reset'>Reset</button>
+				<button type='reset' id='reset'>Reset</button>
 				<button type='button' onclick="window.location.href = '../../homepage.php';">Cancel</button>
 			</form>
 		</center>
 	</body>
 </html>
-
-<script>
-	document.getElementById("reset").addEventListener("click", function() {
-		document.getElementById("prog_name").selectedIndex='0';
-		document.getElementById("reportType").selectedIndex='0';
-		document.getElementById("severity").selectedIndex='0';
-		document.getElementById("functionalArea").selectedIndex='0';
-		document.getElementById("assignedTo").selectedIndex='0';
-		document.getElementById("reportedBy").selectedIndex='0';
-		document.getElementById("status").selectedIndex='0';
-		document.getElementById("priority").selectedIndex='0';
-		document.getElementById("resolution").selectedIndex='0';
-	});
-</script>
