@@ -29,7 +29,7 @@
 			<h3>Welcome to Bughound Software</h3>
 			<ul>
 				<li><a href='views/bugs/addBugForm.php'>Enter NEW Bug</a></li>
-				<li><a href=''>Update EXISTING Bug</a></li>
+				<li><a href='views/bugs/viewBugs.php'>Update EXISTING Bug</a></li>
 				<li><a href='views/bugs/searchBugs.php'>Search For Bugs</a></li>
 				<?php 
 
