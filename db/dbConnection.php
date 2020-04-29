@@ -443,6 +443,50 @@
         return $bug ;
     }
 
+
+    function updateBug($bug_id,$reportType ,$severity, $problem_summary,$reproducible,$problem, $suggestedFix,$reportedBy,
+        $reportedByDate, $functionalArea, $assignedTo, $comments, $status, $priority, $resolution, $resolutionVersion,
+        $resolvedBy, $resolvedByDate, $testedBy, $testedByDate, $deferred,$prog_id){            
+            
+        global $connection;
+        
+        $query = "UPDATE bugs 
+                    SET reportType = '$reportType' ,
+                        severity = '$severity' ,
+                        problemSummary = '$problem_summary' ,
+                        reproducible = '$reproducible' ,
+                        problem = '$problem' ,
+                        suggestedFix = '$suggestedFix' ,
+                        reportedBy = '$reportedBy' ,
+                        reportedByDate = date('$reportedByDate'),
+                        functionalArea = '$functionalArea' ,
+                        assignedTo = '$assignedTo' ,
+                        comments = '$comments' ,
+                        bugStatus = '$status' ,
+                        priority = '$priority' ,
+                        resolution = '$resolution' ,
+                        resolutionVersion = '$resolutionVersion' ,
+                        resolvedBy = '$resolvedBy' ,
+                        resolvedByDate = '$resolvedByDate' ,
+                        testedBy = '$testedBy' ,
+                        testedByDate = '$testedByDate' ,
+                        treatAsDeferred = '$deferred' ,
+                        prog_id = '$prog_id',
+                    WHERE bug_id = '$bug_id'";
+        
+        $Statement = $connection->prepare($query);
+        
+        if($Statement == false){
+            display_db_error($connection->error);
+        }
+        
+        $success = $Statement->execute();
+        
+        return $success;
+        
+    }
+
+
 	// Search bugs
 	function getSearchResult($SQL) {
 		global $connection;
