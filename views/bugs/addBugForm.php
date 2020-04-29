@@ -12,6 +12,9 @@
 	$programs = getPrograms();
 	$employees = getEmployees();
 	$areas = getAllAreas();
+	// if($bug['problem']== '' || $bug['problemSummary']){
+	// 	$error="<span style='color:red'>Not all required fields were entered!</span> ";
+	// }
 
 	
 ?>
@@ -29,7 +32,7 @@
 	<body>
 		<center><h3>New Bug Report Entry Page</h3></center>
 		<hr/>
-		<form action='addBugs.php' method='post'>
+		<form action='addBugs.php' method='post'  onsubmit="return validate(this)">
 			<label>Program</label>
 			<select id='prog_name' name='prog_id'>
 				<?php
@@ -60,7 +63,7 @@
 			<label>Problem Summary: </label>
 				<input type='text' id='prob_summary' name='prob_summary' size='50' />
 			<label>Reproducible? </label>
-			<input type='checkbox' id='reproducible' name='reproducible' value=''>
+			<input type='checkbox' id='reproducible' name='reproducible'>
 			
 			</p>
 			<p>
@@ -79,7 +82,7 @@
 					?>
 				</select>
 				<label>Date</label>
-				<input type='date' placeholder='YYYY-MM-DD' name='reportedByDate' min="2018-01-01" max="2018-12-31"/>
+				<input type='date' placeholder='YYYY-MM-DD' name='reportedByDate' min="2020-01-01" max="2050-12-31"/>
 			</p>
 			<hr/>
 			<p>
@@ -162,7 +165,7 @@
 					?>
 				</select>
 				<label>Date</label>
-				<input type='text' id='resolvedByDate' name='resolvedByDate'/>
+				<input type='text' id='resolvedByDate' name='resolvedByDate' placeholder='YYYY-MM-DD'/>
 				<label>Tested by</label>
 				<select name='testedBy'>
 					<option value=null></option>
@@ -173,10 +176,11 @@
 					?>
 				</select>
 				<label>Date</label>
-				<input type='text' id='date' name='testedByDate'/>
+				<input type='text' id='date' name='testedByDate' placeholder='YYYY-MM-DD'/>
 				<label>Treat as Deferred ?</label>
 				<input type='checkbox' id='deferred' name='deferred' value=''>
 			</p>
+			<p><?php echo $error; ?></p>
 			<p>
 				<input type="submit" name="submit" value="Submit">
 				<button type='button' id='reset'>Reset</button>
@@ -186,6 +190,23 @@
 		
 	</body>
 	<script>
+		function validate(theform){
+			if(theform.prob_summary.value===""){
+				alert("Problem Summary field cannot be empty " );
+				return false;
+			}
+			if(theform.problem.value ===""){
+				alert("Program cannot be empty " );
+				return false;
+			}
+			if(theform.reportedByDate.value ===""){
+				alert("Please enter today's date for this report! " );
+				return false;
+			}
+
+			
+			return true; 
+		}
 		document.getElementById("reset").addEventListener("click", function(){
 			document.getElementById("prog_name").selectedIndex='0';
 			document.getElementById("reportType").selectedIndex='0';
@@ -211,6 +232,8 @@
 
 
 		});
+
+		
 
 	</script>
 	

@@ -364,23 +364,23 @@
         global $connection; 
         echo "adding bugs......";
         
-  echo 'prog id: '.$prog_id.'<br/>';
-  echo 'report type: '.$reportType.'<br/>';
-  echo 'serverity: '.$severity.'<br/>';
-  echo "problem summary..".$problem_summary.'<br/>';
-  echo 'reproducilbe: '.$reproducible.'<br/>';
-  echo 'reportedBy: '.$reportedBy.'<br/>';
-  echo 'reportedByDate: '.$reportedByDate.'<br/>';
-  echo 'functional area: '.$functionalArea.'<br/>';
-  echo 'assignTo: '.$assignedTo.'<br/>';
-  echo 'comment: '.$comments.'<br/>';
-  echo 'status: '.$status.'<br/>';
-  echo 'priority: '.$priority.'<br/>';
-  echo 'resolution: '.$resolution.'<br/>';
-  echo 'resolutionversion: '.$resolutionVersion.'<br/>';
-  echo 'resolvedBy: '.$resolvedBy.'<br/>';
-  echo 'resolvedByDate: '.$resolvedByDate.'<br/>';
-  echo 'testedBy: '.$testedBy.'<br/>';
+//   echo 'prog id: '.$prog_id.'<br/>';
+//   echo 'report type: '.$reportType.'<br/>';
+//   echo 'serverity: '.$severity.'<br/>';
+//   echo "problem summary..".$problem_summary.'<br/>';
+//   echo 'reproducilbe: '.$reproducible.'<br/>';
+//   echo 'reportedBy: '.$reportedBy.'<br/>';
+//   echo 'reportedByDate: '.$reportedByDate.'<br/>';
+//   echo 'functional area: '.$functionalArea.'<br/>';
+//   echo 'assignTo: '.$assignedTo.'<br/>';
+//   echo 'comment: '.$comments.'<br/>';
+//   echo 'status: '.$status.'<br/>';
+//   echo 'priority: '.$priority.'<br/>';
+//   echo 'resolution: '.$resolution.'<br/>';
+//   echo 'resolutionversion: '.$resolutionVersion.'<br/>';
+//   echo 'resolvedBy: '.$resolvedBy.'<br/>';
+//   echo 'resolvedByDate: '.$resolvedByDate.'<br/>';
+//   echo 'testedBy: '.$testedBy.'<br/>';
   
 
         $query="INSERT INTO bugs
@@ -399,8 +399,9 @@
 
             if($success){
                 $bug_id = $connection->insert_id;
+                echo "<span style='color:green'>A new bug was added.</span>";
                 $statement->close();
-                $message="<span style='color:green'>A new bug was added.</span>";
+                
                 return $bug_id;
                 
             }else{
@@ -422,11 +423,24 @@
         }
         $bugs = array(); 
         for($i=0; $i <$result->num_rows; $i++){
-            $bugs = $result->fetch_assoc();
-            $bugs[] = $program; 
+            $bug = $result->fetch_assoc();
+            $bugs[$i] = $bug; 
         }
         $result->free();
         return $bugs;
+    }
+
+    function getBug($bug_id){
+        global $connection; 
+        $query = "SELECT * FROM bugs WHERE bug_id ='$bug_id'";
+        $result = $connection->query($query); 
+        if($result == false){
+            display_db_error($connection->error);
+        }
+        $bug =$result->fetch_assoc(); 
+    
+        $result ->free();
+        return $bug ;
     }
 
 	// Search bugs

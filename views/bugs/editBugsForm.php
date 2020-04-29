@@ -11,14 +11,16 @@
   
     if(isset($_GET['bid'])){
         $bug_id = $_GET['bid'];
-        $bug = getBug($bug_id);
+		$bug = getBug($bug_id);
+		$emp = getEmployee($bug['reportedBy']);
     }
 
     $programs = getPrograms();
     $employees = getEmployees();
     $areas = getAllAreas();
     $progid=$bug['prog_id'];
-    $prog = getProgram($progid);
+	$prog = getProgram($progid);
+	
 
 ?>
 
@@ -70,19 +72,20 @@
 			<label>Problem Summary: </label>
 				<input type='text' id='prob_summary' name='prob_summary' size='50' value='<?php echo $bug['problemSummary'] ?>'/>
 			<label>Reproducible? </label>
-			<input type='checkbox' id='reproducible' name='reproducible' value='<?php echo $bug['reproducible'] ?>'>
+			<input type='checkbox' id='reproducible' name='reproducible' <?php if($bug['reproducible'] == 1) echo "checked"  ?> />
 			
 			</p>
 			<p>
 				<label>Problem: </label>
-				<textarea name='problem' id='problem' style="margin-bottom:-10px; width:300px" value='<?php echo $bug['problem'] ?>'></textarea>
+				<!-- <?php echo $bug['problem']; ?> -->
+				<textarea name='problem' id='problem' style="margin-bottom:-20px; width:300px" value=''><?php echo $bug['problem'] ?></textarea>
 		
 			</p>
 			<p>
 				<label>Reported By</label>
 				<!-- extract employees from the database --> 
 				<select id="assigner" name='reportedBy'>
-					<option value="none" selected disabled hidden> <?php echo $bug['reportedBy'] ?> </option> 
+					<option value="none" selected disabled hidden> <?php echo $emp['name'];?> </option> 
 					<?php 
 						foreach($employees as $employee){
 							echo "<option value ='".$employee['emp_id']."'>".$employee['name']."</option>";
@@ -90,7 +93,7 @@
 					?>
 				</select>
 				<label>Date</label>
-				<input type='date' placeholder='YYYY-MM-DD' name='reportedByDate' min="2018-01-01" max="2022-12-31" value='<?php echo $bug['problem'] ?>'/>
+				<input type='date' placeholder='YYYY-MM-DD' name='reportedByDate' min="2018-01-01" max="2022-12-31" value='<?php echo $bug['reportedByDate'] ?>'/>
 			</p>
 			<hr/>
 			<p>
@@ -114,9 +117,15 @@
 					?>
 				</select>
 			</p>
+
+			<p>
+				<label>Suggested Fix: </label>
+				<textarea name='suggestedFix' id='suggestedFix' style="margin-bottom:-10px; width:300px"><?php echo $bug['suggestedFix'] ?></textarea>
+			
+			</p>
 			<p>
 				<label>Comments: </label>
-				<textarea name='comments' id='comments' style="margin-bottom:-10px; width:300px" value='<?php echo $bug['comments'] ?>'></textarea>
+				<textarea name='comments' id='comments' style="margin-bottom:-10px; width:300px"><?php echo $bug['comments']; ?></textarea>
 			
 			</p>
 			<p>
@@ -187,7 +196,7 @@
 				<label>Date</label>
 				<input type='text' id='date' name='testedByDate' value='<?php echo $bug['testedByDate'] ?>'/>
 				<label>Treat as Deferred ?</label>
-				<input type='checkbox' id='deferred' name='deferred' value='<?php echo $bug['treatedAsDeferred'] ?>' />
+				<input type='checkbox' id='deferred' name='deferred' <?php if($bug['treatAsDeferred'] == 1) echo "checked"  ?>  />
 			</p>
 			<p>
 				<input type="submit" name="submit" value="Submit">

@@ -20,11 +20,12 @@
   $testedBy = $_POST['testedBy'];
   // $testedByDate = $_POST['testedByDate'];
   $deferred = $_POST['deferred'];
-  if(!empty($_POST['reproducible'])){
-     $reproducible =1 ;
-    // echo "not empty";
+  if(empty($_POST['reproducible'])){
+     $reproducible =0 ;
+     echo "... empty...";
   }else{
-    $reproducible =0; 
+    $reproducible = 1; 
+    echo " not empty...";
   }
   if(!empty($_POST['deffered'])){
     $deffered = 1;
@@ -74,5 +75,5 @@
    $functionalArea,$assignedTo, $comments, $status,$priority, $resolution, $resolutionVersion, $resolvedBy,$resolvedByDate, $testedBy, 
    $testedByDate, $deferred,$prog_id);
 
-  // include 'viewBugs.php';
+   include 'viewBugs.php';
 ?>
