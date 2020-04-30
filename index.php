@@ -52,7 +52,7 @@
 					<p><input type="submit" id='submit-btn' name="submit"  value="Submit"></p>
 					</center>
 					<center>
-					<p style='color:#0B4C5F'>Forgot Password?</p>
+					<!-- <p style='color:#0B4C5F'>Forgot Password?</p> -->
 						
 						
 					</center>
