@@ -19,7 +19,7 @@ $employees = getEmployees();
 $areas = getAreas($bug['prog_id']);
 $progid=$bug['prog_id'];
 $prog = getProgram($progid);
-
+$attachments = getAttachments($bug_id);
 
 ?>
 
@@ -204,5 +204,31 @@ $prog = getProgram($progid);
 			</p>
 		</form>
 		
+		<hr/>
+		
+		<form action='uploadAttachment.php' method='POST' enctype="multipart/form-data">
+			<p>
+				<label>Attachments</label>
+				<select name='attachments' id='attachments'>
+					<?php
+						if (count($attachments)==0) {
+							echo "<option value =''>None</option>";
+						}
+						else {
+							foreach($attachments as $attachment) {
+								echo "<option value='".$attachment['attachment_id']."'>".$attachment['name']."</option>";
+							}
+						}
+					?>
+				</select>
+				<button type='submit' formaction='openAttachment.php'>Open</button>
+			</p>
+			<hr/>
+			<p>
+				<input type="hidden" id='bug_id' name='bug_id' value='<?php echo $bug_id; ?>'>
+				<input type="file" name="attachment" />
+				<input type='submit' value="Add Attachment" />
+			</p>
+		</form>
 	</body>	
 </html>
