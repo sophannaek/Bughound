@@ -34,6 +34,8 @@
 					<option value="empl" <?php if(strcmp($table, 'empl')==0) echo 'selected'; ?>>Employees</option>
 					<option value="prog" <?php if(strcmp($table, 'prog')==0) echo 'selected'; ?>>Programs</option>
 					<option value="area" <?php if(strcmp($table, 'area')==0) echo 'selected'; ?>>Areas</option>
+					<option value="bug" <?php if(strcmp($table, 'bug')==0) echo 'selected'; ?>>Bugs</option>
+					<option value="attachment" <?php if(strcmp($table, 'attachment')==0) echo 'selected'; ?>>Attachments</option>
 				</select>
 				<select name="type">
 					<option value="ASCII" <?php if(strcmp($type, 'ASCII')==0) echo 'selected'; ?>>ASCII</option>
@@ -61,6 +63,14 @@
 							$allAreas = getAllAreas();
 							exportASCII($allAreas);
 						break;
+						case ['ASCII', 'bug']:
+							$allBugs = getBugs();
+							exportASCII($allBugs);
+						break;
+						case ['ASCII', 'attachment']:
+							$allAttachments = getAllAttachments();
+							exportASCII($allAttachments);
+						break;
 						case ['XML', 'empl']:
 							$employees = getEmployees();
 							$table = 'employees';
@@ -75,6 +85,16 @@
 							$allAreas = getAllAreas();
 							$table = 'areas';
 							displayXML($allAreas,$table);
+						break;
+						case ['XML', 'bug']:
+							$allBugs = getBugs();
+							$table = 'bugs';
+							displayXML($allBugs,$table);
+						break;
+						case ['XML', 'attachment']:
+							$allAttachments = getAllAttachments();
+							$table = 'attachments';
+							displayXML($allAttachments,$table);
 						break;
 					}
 					exit(0);

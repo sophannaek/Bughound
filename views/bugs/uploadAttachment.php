@@ -17,6 +17,7 @@
 		
 		if (move_uploaded_file($_FILES['attachment']['tmp_name'], $file)) {
 			addAttachment($bug_id, $name, $file);
+			echo 'uploaded';
 			header("location: editBugsForm.php?bid=" . $bug_id);
 		}
 		else {

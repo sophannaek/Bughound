@@ -368,7 +368,7 @@
 //   echo 'report type: '.$reportType.'<br/>';
 //   echo 'serverity: '.$severity.'<br/>';
 //   echo "problem summary..".$problem_summary.'<br/>';
-//   echo 'reproducilbe: '.$reproducible.'<br/>';
+   echo 'reproducilbe: '.$reproducible.'<br/>';
 //   echo 'reportedBy: '.$reportedBy.'<br/>';
 //   echo 'reportedByDate: '.$reportedByDate.'<br/>';
 //   echo 'functional area: '.$functionalArea.'<br/>';
@@ -412,6 +412,7 @@
             echo $message;
          
    }
+
 
    /* list all bugs */
     function getBugs(){
@@ -525,7 +526,24 @@
         }
 		$result->free();
         return $attachments;
+    }
+    //get all the attachments
+    function getAllAttachments() {
+		global $connection;
+		$query = "SELECT * FROM attachments ORDER BY attachment_id";
+		$result = $connection->query($query);
+		if($result == false){
+            display_db_error($connection->error);
+        }
+		$attachments = array();
+		for ($i = 0; $i < $result->num_rows; $i++) {
+			$attachments[$i] = $result->fetch_assoc();
+		}
+		$result->free();
+		return $attachments;
 	}
+    
+
 	
 	
 	// get an attachment

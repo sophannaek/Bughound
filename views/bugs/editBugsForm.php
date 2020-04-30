@@ -71,7 +71,11 @@ $attachments = getAttachments($bug_id);
 			<label>Problem Summary: </label>
 				<input type='text' id='prob_summary' name='prob_summary' size='50' value='<?php echo $bug['problemSummary'] ?>'/>
 			<label>Reproducible? </label>
-			<input type='checkbox' id='reproducible' name='reproducible' <?php if($bug['reproducible'] == 1) echo "checked"  ?> />
+			<select id='reproducible' name='reproducible'>
+					<option value="<?php echo $bug['reproducible'] ;?>" selected hidden><?php echo $bug['reproducible']; ?></option>
+					<option value='Yes'>Yes</option>
+					<option value='No'>No</option>
+			</select>
 			
 			</p>
 			<p>
@@ -195,11 +199,15 @@ $attachments = getAttachments($bug_id);
 				<label>Date</label>
 				<input type='text' id='testedByDate' name='testedByDate' <?php if($bug['testedByDate']!='') echo "value='".$bug['testedByDate']."'" ?> placeholder='YYYY-MM-DD'/>
 				<label>Treat as Deferred ?</label>
-				<input type='checkbox' id='deferred' name='deferred' <?php if($bug['treatAsDeferred'] == 1) echo "checked"  ?>  />
+				<!-- <input type='checkbox' id='deferred' name='deferred' <?php if($bug['treatAsDeferred'] == 1) echo "checked"  ?>  /> -->
+				<select id='deferred' name='deferred'>
+					<option value="<?php echo $bug['treatAsDeferred'] ;?>" selected hidden><?php echo $bug['treatAsDeferred']; ?></option>
+					<option value='Yes'>Yes</option>
+					<option value='No'>No</option>
+			</select>
 			</p>
 			<p>
 				<input type="submit" name="action" value="Submit">
-				<button type='reset'>Reset</button>
 				<button type='button' onclick="window.location.href = '../../homepage.php';">Cancel</button>
 			</p>
 		</form>

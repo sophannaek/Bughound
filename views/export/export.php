@@ -31,6 +31,14 @@
 				$allAreas = getAllAreas();
 				exportASCIIFile($allAreas, "areas.txt");
 			break;
+			case ['ASCII', 'bug']:
+				$allBugs = getBugs();
+				exportASCIIFile($allBugs, "bugs.txt");
+			break;
+			case ['ASCII', 'attachment']:
+				$allAttachments = getAllAttachments();
+				exportASCIIFile($allAttachments, "attachments.txt");
+			break;
 			case ['XML', 'empl']:
 				$employees = getEmployees();	
 				$table = 'employees';
@@ -46,6 +54,21 @@
 				$table = 'areas';
 				exportXMLFile($allAreas, $table);
 			break;
+
+			case ['XML', 'bug']:
+				$allBugs = getBugs();
+				$table = 'bugs';
+				exportXMLFile($allBugs, $table);
+			break;
+
+			case ['XML', 'attachment']:
+				$allAttachments = getAllAttachments();
+				$table = 'attachments';
+				exportXMLFile($allAttachments, $table);
+			break;
+
+
+
 		}
 		
 		header("Location: exportForm.php");

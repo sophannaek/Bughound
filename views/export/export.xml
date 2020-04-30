@@ -1,64 +1,320 @@
 <?xml version="1.0" encoding="utf-8"?>
-<employees>
+<bugs>
+  <bug_id>1</bug_id>
+  <reportType>Design Issue</reportType>
+  <severity>Minor</severity>
+  <problemSummary/>
+  <reproducible>0</reproducible>
+  <problem/>
+  <suggestedFix/>
+  <reportedBy>3</reportedBy>
+  <reportedByDate>2020-04-15</reportedByDate>
+  <functionalArea/>
+  <assignedTo>0</assignedTo>
+  <comments/>
+  <bugStatus>Open</bugStatus>
+  <priority/>
+  <resolution/>
+  <resolutionVersion/>
+  <resolvedBy>0</resolvedBy>
+  <resolvedByDate>2020-04-15</resolvedByDate>
+  <testedBy>0</testedBy>
+  <testedByDate>2020-04-15</testedByDate>
+  <treatAsDeferred>0</treatAsDeferred>
   <emp_id>3</emp_id>
-  <name>mike</name>
-  <username>mike</username>
-  <password>pass</password>
-  <userlevel>1</userlevel>
-</employees>
-<employees>
-  <emp_id>4</emp_id>
-  <name>sophie</name>
-  <username>sophie</username>
-  <password>pass</password>
-  <userlevel>3</userlevel>
-</employees>
-<employees>
-  <emp_id>5</emp_id>
-  <name>Bob</name>
-  <username>smithbob</username>
-  <password>pass</password>
-  <userlevel>3</userlevel>
-</employees>
-<employees>
-  <emp_id>6</emp_id>
-  <name>Sue</name>
-  <username>jonessue</username>
-  <password>pass</password>
-  <userlevel>2</userlevel>
-</employees>
-<employees>
-  <emp_id>7</emp_id>
-  <name>Habib</name>
-  <username>smithhabib</username>
-  <password>pass</password>
-  <userlevel>2</userlevel>
-</employees>
-<employees>
-  <emp_id>8</emp_id>
-  <name>Yoshi</name>
-  <username>jonesyoshi</username>
-  <password>pass</password>
-  <userlevel>3</userlevel>
-</employees>
-<employees>
-  <emp_id>9</emp_id>
-  <name>Franchois</name>
-  <username>smithfrancois</username>
-  <password>pass</password>
-  <userlevel>2</userlevel>
-</employees>
-<employees>
-  <emp_id>10</emp_id>
-  <name>Becky</name>
-  <username>jonesbecky</username>
-  <password>pass</password>
-  <userlevel>1</userlevel>
-</employees>
-<employees>
-  <emp_id>11</emp_id>
-  <name>Felix</name>
-  <username>smithfelix</username>
-  <password>pass</password>
-  <userlevel>2</userlevel>
-</employees>
+  <prog_id>4</prog_id>
+  <program>Ada95 Coder</program>
+  <program_release>1</program_release>
+  <program_version>1</program_version>
+  <reportName>mike</reportName>
+</bugs>
+<bugs>
+  <bug_id>2</bug_id>
+  <reportType>Design Issue</reportType>
+  <severity>Minor</severity>
+  <problemSummary/>
+  <reproducible>0</reproducible>
+  <problem/>
+  <suggestedFix/>
+  <reportedBy>3</reportedBy>
+  <reportedByDate>2020-04-15</reportedByDate>
+  <functionalArea/>
+  <assignedTo>0</assignedTo>
+  <comments/>
+  <bugStatus>Open</bugStatus>
+  <priority/>
+  <resolution/>
+  <resolutionVersion/>
+  <resolvedBy>0</resolvedBy>
+  <resolvedByDate>2020-04-15</resolvedByDate>
+  <testedBy>0</testedBy>
+  <testedByDate>2020-04-15</testedByDate>
+  <treatAsDeferred>0</treatAsDeferred>
+  <emp_id>3</emp_id>
+  <prog_id>4</prog_id>
+  <program>Ada95 Coder</program>
+  <program_release>1</program_release>
+  <program_version>1</program_version>
+  <reportName>mike</reportName>
+</bugs>
+<bugs>
+  <bug_id>3</bug_id>
+  <reportType>Design Issue</reportType>
+  <severity>Minor</severity>
+  <problemSummary/>
+  <reproducible>0</reproducible>
+  <problem/>
+  <suggestedFix/>
+  <reportedBy>3</reportedBy>
+  <reportedByDate>2020-04-15</reportedByDate>
+  <functionalArea/>
+  <assignedTo>0</assignedTo>
+  <comments/>
+  <bugStatus>Open</bugStatus>
+  <priority/>
+  <resolution/>
+  <resolutionVersion/>
+  <resolvedBy>0</resolvedBy>
+  <resolvedByDate>2020-04-15</resolvedByDate>
+  <testedBy>0</testedBy>
+  <testedByDate>2020-04-15</testedByDate>
+  <treatAsDeferred>0</treatAsDeferred>
+  <emp_id>3</emp_id>
+  <prog_id>4</prog_id>
+  <program>Ada95 Coder</program>
+  <program_release>1</program_release>
+  <program_version>1</program_version>
+  <reportName>mike</reportName>
+</bugs>
+<bugs>
+  <bug_id>4</bug_id>
+  <reportType>Design Issue</reportType>
+  <severity>Minor</severity>
+  <problemSummary/>
+  <reproducible>0</reproducible>
+  <problem/>
+  <suggestedFix/>
+  <reportedBy>3</reportedBy>
+  <reportedByDate>2020-04-15</reportedByDate>
+  <functionalArea/>
+  <assignedTo>0</assignedTo>
+  <comments/>
+  <bugStatus>Open</bugStatus>
+  <priority/>
+  <resolution/>
+  <resolutionVersion/>
+  <resolvedBy>0</resolvedBy>
+  <resolvedByDate>2020-04-15</resolvedByDate>
+  <testedBy>0</testedBy>
+  <testedByDate>2020-04-15</testedByDate>
+  <treatAsDeferred>0</treatAsDeferred>
+  <emp_id>3</emp_id>
+  <prog_id>4</prog_id>
+  <program>Ada95 Coder</program>
+  <program_release>1</program_release>
+  <program_version>1</program_version>
+  <reportName>mike</reportName>
+</bugs>
+<bugs>
+  <bug_id>5</bug_id>
+  <reportType>Design Issue</reportType>
+  <severity>Minor</severity>
+  <problemSummary/>
+  <reproducible>0</reproducible>
+  <problem/>
+  <suggestedFix/>
+  <reportedBy>3</reportedBy>
+  <reportedByDate>2020-04-15</reportedByDate>
+  <functionalArea/>
+  <assignedTo>0</assignedTo>
+  <comments/>
+  <bugStatus>Open</bugStatus>
+  <priority/>
+  <resolution/>
+  <resolutionVersion/>
+  <resolvedBy>0</resolvedBy>
+  <resolvedByDate/>
+  <testedBy>0</testedBy>
+  <testedByDate/>
+  <treatAsDeferred>0</treatAsDeferred>
+  <emp_id>3</emp_id>
+  <prog_id>4</prog_id>
+  <program>Ada95 Coder</program>
+  <program_release>1</program_release>
+  <program_version>1</program_version>
+  <reportName>mike</reportName>
+</bugs>
+<bugs>
+  <bug_id>6</bug_id>
+  <reportType>Design Issue</reportType>
+  <severity>Minor</severity>
+  <problemSummary/>
+  <reproducible>0</reproducible>
+  <problem/>
+  <suggestedFix/>
+  <reportedBy>3</reportedBy>
+  <reportedByDate>2020-04-15</reportedByDate>
+  <functionalArea/>
+  <assignedTo>0</assignedTo>
+  <comments/>
+  <bugStatus>Open</bugStatus>
+  <priority/>
+  <resolution/>
+  <resolutionVersion/>
+  <resolvedBy>0</resolvedBy>
+  <resolvedByDate/>
+  <testedBy>0</testedBy>
+  <testedByDate/>
+  <treatAsDeferred>0</treatAsDeferred>
+  <emp_id>3</emp_id>
+  <prog_id>4</prog_id>
+  <program>Ada95 Coder</program>
+  <program_release>1</program_release>
+  <program_version>1</program_version>
+  <reportName>mike</reportName>
+</bugs>
+<bugs>
+  <bug_id>7</bug_id>
+  <reportType>Design Issue</reportType>
+  <severity>Minor</severity>
+  <problemSummary/>
+  <reproducible>0</reproducible>
+  <problem/>
+  <suggestedFix/>
+  <reportedBy>3</reportedBy>
+  <reportedByDate>2020-04-15</reportedByDate>
+  <functionalArea/>
+  <assignedTo>0</assignedTo>
+  <comments/>
+  <bugStatus>Open</bugStatus>
+  <priority/>
+  <resolution/>
+  <resolutionVersion/>
+  <resolvedBy>0</resolvedBy>
+  <resolvedByDate/>
+  <testedBy>0</testedBy>
+  <testedByDate/>
+  <treatAsDeferred>0</treatAsDeferred>
+  <emp_id>3</emp_id>
+  <prog_id>4</prog_id>
+  <program>Ada95 Coder</program>
+  <program_release>1</program_release>
+  <program_version>1</program_version>
+  <reportName>mike</reportName>
+</bugs>
+<bugs>
+  <bug_id>8</bug_id>
+  <reportType>Design Issue</reportType>
+  <severity>Minor</severity>
+  <problemSummary>the issue in the editor</problemSummary>
+  <reproducible>0</reproducible>
+  <problem>the issue is in the editor</problem>
+  <suggestedFix/>
+  <reportedBy>3</reportedBy>
+  <reportedByDate>2020-04-15</reportedByDate>
+  <functionalArea/>
+  <assignedTo>0</assignedTo>
+  <comments/>
+  <bugStatus>Open</bugStatus>
+  <priority/>
+  <resolution/>
+  <resolutionVersion/>
+  <resolvedBy>0</resolvedBy>
+  <resolvedByDate/>
+  <testedBy>0</testedBy>
+  <testedByDate/>
+  <treatAsDeferred>0</treatAsDeferred>
+  <emp_id>3</emp_id>
+  <prog_id>6</prog_id>
+  <program>COBOL Coder</program>
+  <program_release>1</program_release>
+  <program_version>1</program_version>
+  <reportName>mike</reportName>
+</bugs>
+<bugs>
+  <bug_id>9</bug_id>
+  <reportType>Query</reportType>
+  <severity>Fatal</severity>
+  <problemSummary>the query is not working</problemSummary>
+  <reproducible>0</reproducible>
+  <problem>the query is not working at all</problem>
+  <suggestedFix/>
+  <reportedBy>3</reportedBy>
+  <reportedByDate>2020-04-28</reportedByDate>
+  <functionalArea>6</functionalArea>
+  <assignedTo>0</assignedTo>
+  <comments/>
+  <bugStatus>Open</bugStatus>
+  <priority/>
+  <resolution/>
+  <resolutionVersion/>
+  <resolvedBy>0</resolvedBy>
+  <resolvedByDate/>
+  <testedBy>0</testedBy>
+  <testedByDate/>
+  <treatAsDeferred>0</treatAsDeferred>
+  <emp_id>3</emp_id>
+  <prog_id>10</prog_id>
+  <program>Word Writer 2019</program>
+  <program_release>1</program_release>
+  <program_version>1</program_version>
+  <reportName>mike</reportName>
+</bugs>
+<bugs>
+  <bug_id>10</bug_id>
+  <reportType>Hardware</reportType>
+  <severity>Fatal</severity>
+  <problemSummary>add</problemSummary>
+  <reproducible>1</reproducible>
+  <problem>asdfad</problem>
+  <suggestedFix/>
+  <reportedBy>3</reportedBy>
+  <reportedByDate>2020-04-28</reportedByDate>
+  <functionalArea/>
+  <assignedTo>0</assignedTo>
+  <comments/>
+  <bugStatus>Open</bugStatus>
+  <priority/>
+  <resolution/>
+  <resolutionVersion/>
+  <resolvedBy>0</resolvedBy>
+  <resolvedByDate/>
+  <testedBy>0</testedBy>
+  <testedByDate/>
+  <treatAsDeferred>0</treatAsDeferred>
+  <emp_id>3</emp_id>
+  <prog_id>9</prog_id>
+  <program>Pascal Coder</program>
+  <program_release>1</program_release>
+  <program_version>1</program_version>
+  <reportName>mike</reportName>
+</bugs>
+<bugs>
+  <bug_id>11</bug_id>
+  <reportType>Hardware</reportType>
+  <severity>Fatal</severity>
+  <problemSummary>add</problemSummary>
+  <reproducible>0</reproducible>
+  <problem>asdfad</problem>
+  <suggestedFix/>
+  <reportedBy>3</reportedBy>
+  <reportedByDate>2020-04-28</reportedByDate>
+  <functionalArea/>
+  <assignedTo>0</assignedTo>
+  <comments/>
+  <bugStatus>Open</bugStatus>
+  <priority/>
+  <resolution/>
+  <resolutionVersion/>
+  <resolvedBy>0</resolvedBy>
+  <resolvedByDate/>
+  <testedBy>0</testedBy>
+  <testedByDate/>
+  <treatAsDeferred>0</treatAsDeferred>
+  <emp_id>3</emp_id>
+  <prog_id>9</prog_id>
+  <program>Pascal Coder</program>
+  <program_release>1</program_release>
+  <program_version>1</program_version>
+  <reportName>mike</reportName>
+</bugs>

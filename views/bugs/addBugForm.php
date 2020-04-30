@@ -62,7 +62,11 @@
 			<label>Problem Summary: </label>
 				<input type='text' id='prob_summary' name='prob_summary' size='50' />
 			<label>Reproducible? </label>
-			<input type='checkbox' id='reproducible' name='reproducible'>
+			<!-- <input type='checkbox' id='reproducible' name='reproducible'> -->
+			<select id='reproducible' name='reproducible'>
+					<option value='Yes'>Yes</option>
+					<option value='No'>No</option>
+			</select>
 			
 			</p>
 			<p>
@@ -177,7 +181,12 @@
 				<label>Date</label>
 				<input type='text' id='testedByDate' name='testedByDate' placeholder='YYYY-MM-DD'/>
 				<label>Treat as Deferred ?</label>
-				<input type='checkbox' id='deferred' name='deferred' value=''>
+				<!-- <input type='checkbox' id='deferred' name='deferred' value=''> -->
+				<select id='deferred' name='deferred'>
+					<option value=''></option>
+					<option value='Yes'>Yes</option>
+					<option value='No'>No</option>
+			</select>
 			</p>
 			<p><?php if (isset($error)) echo $error; ?></p>
 			<p>
