@@ -39,7 +39,7 @@
 							<option value="All" selected>All</option>
 							<?php
 								foreach($programs as $program){
-									echo "<option value ='".$program['prog_id']."'>".$program['program']."</option>";
+									echo "<option value ='".$program['prog_id']."'>".$program['program']." ".$program['program_release'].",".$program['program_version']."</option>";
 								}
 							?>
 						</select></td>

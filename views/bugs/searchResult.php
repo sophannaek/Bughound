@@ -49,7 +49,7 @@
 	}
 	
 	// set up SQL
-	$SQL = "SELECT bugs.*, programs.program FROM bugs";
+	$SQL = "SELECT bugs.*, programs.* FROM bugs";
 	$SQL = $SQL . " INNER JOIN programs ON bugs.prog_id = programs.prog_id WHERE '1=1'";
 	if (strcmp($problem, '') != 0) {
 		$SQL = $SQL . " AND (bugs.problemSummary LIKE '%$problem%' OR bugs.problem LIKE '%$problem%')";
@@ -109,8 +109,8 @@
 				foreach($bugs as $bug) {
 					echo "<tr>";
 					// clicl bug_id can go to edit page
-					echo "<td><a href='editBugs.php'>" . $bug['bug_id'] . "</a></td>";
-					echo "<td>" . $bug['program'] . "</td>";
+					echo "<td><a href='editBugsForm.php?bid=" . $bug['bug_id'] . "'>" . $bug['bug_id'] . "</a></td>";
+					echo "<td>" . $bug['program'] . " " . $bug['program_release'] . "," . $bug['program_version'] . "</td>";
 					echo "<td>" . $bug['problemSummary'] . "</td>";
 					echo "</tr>";
 				}

@@ -3,14 +3,15 @@
   $prog_id = $_POST['prog_id'];
   $reportType = $_POST['reportType'];
   $serverity = $_POST['serverity'];
-  $problem_summary = $_POST['prob_summary'];
-  $problem = $_POST['problem'];
+  $problem_summary = addslashes($_POST['prob_summary']);
+  $problem = addslashes($_POST['problem']);
+  $suggestedFix = '';
   // $reproducible = $_POST['reproducible'];
   $reportedBy =$_POST['reportedBy'];
   $reportedByDate = $_POST['reportedByDate'];
   $functionalArea = $_POST['functionalArea'];
   $assignedTo = $_POST['assignedTo'];
-  $comments = $_POST['comments'];
+  $comments = addslashes($_POST['comments']);
   $status = $_POST['status'];
   $priority = $_POST['priority'];
   $resolution = $_POST['resolution'];
@@ -19,16 +20,16 @@
   // $resolvedByDate = $_POST['resolvedByDate'];
   $testedBy = $_POST['testedBy'];
   // $testedByDate = $_POST['testedByDate'];
-  $deferred = $_POST['deferred'];
+  // $deferred = $_POST['deferred'];
   if(empty($_POST['reproducible'])){
      $reproducible =0 ;
-     echo "... empty...";
+     //echo "... empty...";
   }else{
     $reproducible = 1; 
-    echo " not empty...";
+    //echo " not empty...";
   }
-  if(!empty($_POST['deffered'])){
-    $deffered = 1;
+  if(!empty($_POST['deferred'])){
+    $deferred = 1;
   }else{
     $deferred = 0; 
   }
@@ -48,7 +49,7 @@
     $resolvedByDate = NULL; 
   }else{
    $resolvedByDate = $_POST['resolvedByDate'] ;
-   echo "resolvedbydate:....".$resolvedByDate."<br/>";
+   //echo "resolvedbydate:....".$resolvedByDate."<br/>";
   }
   if(!$_POST['assignedTo'] === ''){
     $testedBy =$_POST['testedBy'] ;
@@ -63,7 +64,7 @@
    $testedByDate = $_POST['testedByDate'] ;
    
   }
-  echo "testedbydate:....".$testedByDate."<br/>";
+  //echo "testedbydate:....".$testedByDate."<br/>";
   //connect the database
   require_once '../../db/dbConnection.php'; 
 

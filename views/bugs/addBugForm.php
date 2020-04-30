@@ -37,9 +37,8 @@
 			<select id='prog_name' name='prog_id'>
 				<?php
 					foreach($programs as $program){
-						echo "<option value ='".$program['prog_id']."'>".$program['program']."</option>";
+						echo "<option value ='".$program['prog_id']."'>".$program['program']." ".$program['program_release'].",".$program['program_version']."</option>";
 					}
-
 				?>
 			
 			</select>
@@ -176,14 +175,14 @@
 					?>
 				</select>
 				<label>Date</label>
-				<input type='text' id='date' name='testedByDate' placeholder='YYYY-MM-DD'/>
+				<input type='text' id='testedByDate' name='testedByDate' placeholder='YYYY-MM-DD'/>
 				<label>Treat as Deferred ?</label>
 				<input type='checkbox' id='deferred' name='deferred' value=''>
 			</p>
-			<p><?php echo $error; ?></p>
+			<p><?php if (isset($error)) echo $error; ?></p>
 			<p>
 				<input type="submit" name="submit" value="Submit">
-				<button type='button' id='reset'>Reset</button>
+				<button type='reset'>Reset</button>
 				<button type='button' onclick="window.location.href = '../../homepage.php';">Cancel</button>
 			</p>
 		</form>
@@ -207,7 +206,8 @@
 			
 			return true; 
 		}
-		document.getElementById("reset").addEventListener("click", function(){
+		
+		/*document.getElementById("reset").addEventListener("click", function(){
 			document.getElementById("prog_name").selectedIndex='0';
 			document.getElementById("reportType").selectedIndex='0';
 			document.getElementById("severity").selectedIndex='0';
@@ -229,12 +229,7 @@
 			document.getElementById('testedByDate').value = '';
 
 			document.getElementById('deferred').checked = false;
-
-
-		});
-
-		
-
+		});*/
 	</script>
 	
 </html>

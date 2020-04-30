@@ -45,23 +45,22 @@
 <?php
 
 
-  	echo "<center><table style='width:500px;text-align:center;border-bottom:1px solid lightgrey;'><tr><th>Bug ID</th><th>Program</th>".
-      "<th>Report Type</th><th>Severity</th><th>Problem Summary</th><th>Problem</th><th>Reported By</th><th>Reported Date</th></tr>";
+  	echo "<center><table style='width:1500px;text-align:center;border-bottom:1px solid lightgrey;'><tr><th width='3%'>Bug ID</th><th width='10%'>Program</th>".
+      "<th width='7%'>Report Type</th><th width='8%'>Severity</th><th width='17%'>Problem Summary</th><th width='40%'>Problem</th>".
+	  "<th width='7%'>Reported By</th><th width='8%'>Reported Date</th></tr>";
 
 			
 	foreach($bugs as $bug){
-	    $prog = getProgram($bug['prog_id']);
 		echo '<tr>';
 
 		if($userlevel >=2 ){
-			echo "<td><a href='editBugsForm.php?bid=".$bug['bug_id']."'>".$bug['bug_id']
-		
-		.'</td><td>'.$prog['program'].'</td><td>'.$bug['reportType'].'</td><td>'.$bug['severity'].'</td><td>'.$bug['problemSummary'].'</td>';
+			echo "<td><a href='editBugsForm.php?bid=".$bug['bug_id']."'>".$bug['bug_id'];
 		}
 		else{
-			echo "<td>".$bug['bug_id'].'</td><td>'.$prog['program'].'</td><td>'.$bug['reportType'].'</td><td>'.$bug['severity'].'</td><td>'.$bug['problemSummary'].'</td>'
-			.'<td>'.$bug['reportedBy'].'</td><td>'.$bug['reportedBy'].'</td><td>'.$bug['reportedByDate'].'</td>';
+			echo "<td>".$bug['bug_id'];
 		}
+		echo '</td><td>'.$bug['program'].' '.$bug['program_release'].','.$bug['program_version'].'</td><td>'.$bug['reportType'].'</td><td>'.$bug['severity'].'</td><td>'.$bug['problemSummary'].'</td>'
+			.'<td>'.$bug['problem'].'</td><td>'.$bug['reportName'].'</td><td>'.$bug['reportedByDate'].'</td>';
 		
 	}
 	

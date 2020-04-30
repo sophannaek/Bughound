@@ -12,12 +12,11 @@ if (isset($_SESSION['username'])){
 if(isset($_GET['bid'])){
     $bug_id = $_GET['bid'];
     $bug = getBug($bug_id);
-    $emp = getEmployee($bug['reportedBy']);
 }
 
 $programs = getPrograms();
 $employees = getEmployees();
-$areas = getAllAreas();
+$areas = getAreas($bug['prog_id']);
 $progid=$bug['prog_id'];
 $prog = getProgram($progid);
 
@@ -39,26 +38,20 @@ $prog = getProgram($progid);
 		<center><h3>Update Bug Page for bug #<?php echo $bug_id ?></h3></center>
 		<hr/>
 		<form action='updateBugs.php' method='post' >
+			<input type="hidden" id='bug_id' name='bug_id' value='<?php echo $bug_id; ?>'>
 			<label>Program</label>
-			<select id='prog_name' name='prog_id'>
-				<option value=" " selected disabled hidden> <?php echo $prog['program'] ?> </option> 
+			<select id='prog_id' name='prog_id'>
+				<option value="<?php echo $prog['prog_id']; ?>" selected hidden> <?php echo $prog['program']; ?> </option> 
 				<?php
 					foreach($programs as $program){
-						
-						if($program == $prog['program']){
-						echo "<option value ='".$program['prog_id']."' selected>".$program['program']."</option>";	
-						}else{
-							
 						echo "<option value ='".$program['prog_id']."'>".$program['program']."</option>";
-						}
 					}
-
 				?>
 			
 			</select>
 			<label> Report Type</label>
 			<select id='reportType' name="reportType">
-				<option value=" " selected disabled hidden> <?php echo $bug['reportType'] ?> </option> 
+				<option value="<?php echo $bug['reportType']; ?>" selected hidden> <?php echo $bug['reportType']; ?> </option> 
 				<option value="Design Issue">Design Issue</option>
 				<option value="Coding Error">Coding Error</option>
 				<option value='Suggestion'>Suggestion</option>
@@ -68,7 +61,7 @@ $prog = getProgram($progid);
 			</select>
 			<label>Severity</label>
 			<select id='severity' name='serverity' value="<?php echo $reportType ?>">
-				<option value=" " selected disabled hidden> <?php echo $bug['severity'] ?> </option> 		
+				<option value="<?php echo $bug['severity']; ?>" selected hidden> <?php echo $bug['severity']; ?> </option> 		
 				<option value='Minor'>Minor</option>
 				<option value='Serious'>Serious</option>
 				<option value='Fatal'>Fatal</option>
@@ -90,8 +83,8 @@ $prog = getProgram($progid);
 			<p>
 				<label>Reported By</label>
 				<!-- extract employees from the database --> 
-				<select id="assigner" name='reportedBy'>
-					<option value=" " selected disabled hidden> <?php echo $emp['name'];?> </option> 
+				<select id="reportedBy" name='reportedBy'>
+					<option value="<?php echo $bug['reportedBy']; ?>" selected hidden><?php if ($bug['reportedBy']!=0) echo $bug['reportName']; ?></option> 
 					<?php 
 						foreach($employees as $employee){
 							echo "<option value ='".$employee['emp_id']."'>".$employee['name']."</option>";
@@ -105,7 +98,7 @@ $prog = getProgram($progid);
 			<p>
 				<label> Functional Area</label>
 				<select id='functional_area' name='functionalArea'>
-					<option value=" " selected disabled hidden> <?php echo $bug['functionalArea'] ?> </option> 
+					<option value="<?php echo $bug['functionalArea']; ?>" selected hidden> <?php if ($bug['functionalArea']!=null) echo $bug['area']; ?> </option> 
 					<?php 
 						foreach($areas as $area){
 							echo "<option value ='".$area['area_id']."'>".$area['area']."</option>";
@@ -115,7 +108,7 @@ $prog = getProgram($progid);
 				<label>Assigned To </label>
 				<select id='assignedTo' name='assignedTo'>
 				<!-- extract to the database -->
-					<option value=" " selected disabled hidden> <?php echo $bug['assignedTo'] ?> </option> 
+					<option value="<?php echo $bug['assignedTo']; ?> " selected hidden> <?php if ($bug['assignedTo']!=0) echo $bug['assignName']; ?> </option> 
 					<?php 
 						foreach($employees as $employee){
 							echo "<option value ='".$employee['emp_id']."'>".$employee['name']."</option>";
@@ -137,7 +130,7 @@ $prog = getProgram($progid);
 			<p>
 				<label>Status</label>
 				<select id='status' name='status'>
-					<option value=" " selected disabled hidden> <?php echo $bug['bugStatus'] ?> </option> 					
+					<option value="<?php echo $bug['bugStatus']; ?>" selected hidden> <?php echo $bug['bugStatus']; ?> </option> 					
 					<option value="Open">Open</option>
 					<option value='Closed or Open'>Closed or Open</option>
 					<option value='Closed'>Closed</option>
@@ -147,7 +140,7 @@ $prog = getProgram($progid);
 				<label>Priority</label>
 				<select id='priority' name='priority'>
 					<!-- assigned by manager only  -->
-					<option value=" " selected disabled hidden> <?php echo $bug['priority'] ?> </option> 
+					<option value="<?php echo $bug['priority']; ?>" selected hidden> <?php echo $bug['priority']; ?> </option> 
 					<?php 
 						if ($userlevel == 3){
 							echo "<option value='Fix immediately'>Fix immediately</option>
@@ -162,7 +155,7 @@ $prog = getProgram($progid);
 				</select>
 				<label>Resolution</label>
 				<select id='resolution' name='resolution'>
-					<option value=" " selected disabled hidden> <?php echo $bug['resolution'] ?> </option> 
+					<option value="<?php echo $bug['resolution']; ?>" selected hidden> <?php echo $bug['resolution']; ?> </option> 
 					<option value='Pending'>Pending</option>
 					<option value='Fixed'>Fixed</option>
 					<option value='Irreproducible'>Irreproducible</option>
@@ -181,7 +174,7 @@ $prog = getProgram($progid);
 			<p>
 				<label>Resolved By</label>
 				<select name='resolvedBy'>
-					<option value=" " selected disabled hidden> <?php echo $bug['resolvedBy'] ?> </option> 
+					<option value="<?php echo $bug['resolvedBy']; ?>" selected hidden> <?php if ($bug['resolvedBy']!=0) echo $bug['resolveName'] ?> </option> 
 					<?php 
 						foreach($employees as $employee){
 							echo "<option value ='".$employee['emp_id']."'>".$employee['name']."</option>";
@@ -189,10 +182,10 @@ $prog = getProgram($progid);
 					?>
 				</select>
 				<label>Date</label>
-				<input type='text' id='resolvedByDate' name='resolvedByDate' value='<?php echo $bug['resolvedByDate'] ?>'/>
+				<input type='text' id='resolvedByDate' name='resolvedByDate' <?php if($bug['resolvedByDate']!='') echo "value='".$bug['resolvedByDate']."'" ?> placeholder='YYYY-MM-DD'/>
 				<label>Tested by</label>
 				<select name='testedBy'>
-					<option value=" " selected disabled hidden> <?php echo $bug['testedBy'] ?> </option> 
+					<option value="<?php echo $bug['testedBy']; ?> " selected hidden> <?php if ($bug['testedBy']!=0) echo $bug['testName']; ?> </option> 
 					<?php 
 						foreach($employees as $employee){
 							echo "<option value ='".$employee['emp_id']."'>".$employee['name']."</option>";
@@ -200,45 +193,16 @@ $prog = getProgram($progid);
 					?>
 				</select>
 				<label>Date</label>
-				<input type='text' id='date' name='testedByDate' value='<?php echo $bug['testedByDate'] ?>'/>
+				<input type='text' id='testedByDate' name='testedByDate' <?php if($bug['testedByDate']!='') echo "value='".$bug['testedByDate']."'" ?> placeholder='YYYY-MM-DD'/>
 				<label>Treat as Deferred ?</label>
 				<input type='checkbox' id='deferred' name='deferred' <?php if($bug['treatAsDeferred'] == 1) echo "checked"  ?>  />
 			</p>
 			<p>
 				<input type="submit" name="action" value="Submit">
-				<button type='button' id='reset'>Reset</button>
+				<button type='reset'>Reset</button>
 				<button type='button' onclick="window.location.href = '../../homepage.php';">Cancel</button>
 			</p>
 		</form>
 		
-	</body>
-	<script>
-		document.getElementById("reset").addEventListener("click", function(){
-			document.getElementById("prog_name").selectedIndex='0';
-			document.getElementById("reportType").selectedIndex='0';
-			document.getElementById("severity").selectedIndex='0';
-			document.getElementById('reproducible').checked = false;
-			document.getElementById("prob_summary").value = "";
-			document.getElementById('problem').value ="";
-			document.getElementById("reportedBy").selectedIndex='0';
-			document.getElementById('reportedByDate').value ='';		
-			document.getElemnetById('functional_area').selectedIndex ='0';
-			document.getElemnetById('assignedTo').selectedIndex ='0';
-			document.getElementById('comments').value ="";
-			document.getElemnetById('status').selectedIndex ='0';
-			document.getElemnetById('priority').selectedIndex ='0';
-			document.getElemnetById('resolution').selectedIndex ='0';
-			document.getElementById('resolutionVersion').value='';
-			document.getElementById('resolvedBy').selectedIndex='0';
-			document.getElementById('resolvedByDate').value='';
-			document.getElementById('testedBy').selectedIndex = '0';
-			document.getElementById('testedByDate').value = '';
-
-			document.getElementById('deferred').checked = false;
-
-
-		});
-
-	</script>
-	
+	</body>	
 </html>
