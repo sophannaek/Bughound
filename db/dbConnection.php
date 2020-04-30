@@ -3,7 +3,7 @@
   	$dbhost  = 'localhost'; 
 	$dbname  = 'BugHound';   
 	$dbuser  = 'root'; 
-	$dbpass  = ''; 
+	$dbpass  = 'root'; 
 
   	$connection = new mysqli($dbhost, $dbuser, $dbpass,$dbname);
   	if ($connection->connect_error) {
