@@ -48,7 +48,7 @@
 					<p>
 
 					<input type='text' id='password' placeholder='  password' name='password'/></p>
-					<p><?php echo $error; ?></p>
+					<p><?php if (isset($error)) echo $error; ?></p>
 					<p><input type="submit" id='submit-btn' name="submit"  value="Submit"></p>
 					</center>
 					<center>
