@@ -509,4 +509,49 @@
         $result->free();
         return $bugs;
 	}
+	
+	
+	// get attachments of a specific bug
+	function getAttachments($bug_id) {
+		global $connection;
+		$query = "SELECT * FROM attachments WHERE bug_id = '$bug_id'";
+		$result = $connection->query($query);
+		if($result == false){
+            display_db_error($connection->error);
+        }
+		$attachments = array();
+		for($i=0; $i <$result->num_rows; $i++){
+            $attachments[$i] = $result->fetch_assoc();
+        }
+		$result->free();
+        return $attachments;
+	}
+	
+	
+	// get an attachment
+	function getAttachment($attachment_id) {
+		global $connection;
+		$query = "SELECT * FROM attachments WHERE attachment_id = '$attachment_id'";
+		$result = $connection->query($query);
+		if($result == false){
+            display_db_error($connection->error);
+        }
+		$attachment = $result->fetch_assoc();
+		$result->free();
+        return $attachment;
+	}
+	
+	
+	// upload attachments
+	function addAttachment($bug_id, $name, $attachment) {
+		global $connection;
+		$query = "INSERT INTO attachments (attachment_id, name, attachment, bug_id) VALUES (null, '$name', '$attachment', '$bug_id')";
+		$addStatement = $connection->prepare($query);
+        if($addStatement == false){
+           display_db_error($connection->error);
+        }
+		$exe = $addStatement->execute();
+		
+		return $exe;
+	}
 ?>
