@@ -3,7 +3,7 @@
   	$dbhost  = 'localhost'; 
 	$dbname  = 'BugHound';   
 	$dbuser  = 'root'; 
-	$dbpass  = 'root'; 
+	$dbpass  = ''; 
 
   	$connection = new mysqli($dbhost, $dbuser, $dbpass,$dbname);
   	if ($connection->connect_error) {
@@ -57,8 +57,8 @@
     /* add a program */
     function addProgram($prog_name, $prog_release, $prog_version){
         global $connection; 
-        echo "inside add program<br/>";
-        echo $prog_name, $prog_release, $prog_version ."<br/>";
+        //echo "inside add program<br/>";
+        //echo $prog_name, $prog_release, $prog_version ."<br/>";
         
       //  $query= "INSERT INTO programs (program_name, program_release, program_version) VALUES ('$prog_name','$prog_release', '$prog_version')";
 
@@ -70,7 +70,7 @@
         }
         $statement->bind_param("sii",$prog_name, $prog_release,$prog_version);
         $success = $statement->execute();
-        echo "success " .$success;
+        //echo "success " .$success;
         
         if($success){
             $prog_id = $connection->insert_id;
@@ -114,7 +114,7 @@
     /* delete a program */
     function deleteProgram($prog_id){
         global $connection;
-        echo 'prog id ' .$prog_id;
+        //echo 'prog id ' .$prog_id;
         $query = "DELETE FROM programs WHERE prog_id ='$prog_id' ";
         $statement= $connection->prepare($query);
          if($statement == false){
@@ -170,8 +170,8 @@
     
     function addEmployee($user_id, $user_name,$user_password,$user_level){
         global $connection; 
-        echo "inside add employee<br/>";
-        echo $user_id, $user_name,$user_password,$user_level ."<br/>";
+        //echo "inside add employee<br/>";
+        //echo $user_id, $user_name,$user_password,$user_level ."<br/>";
         
       //  $query= "INSERT INTO programs (program_name, program_release, program_version) VALUES ('$prog_name','$prog_release', '$prog_version')";
 
@@ -183,7 +183,7 @@
         }
         $statement->bind_param("sssi",$user_id, $user_name,$user_password,$user_level);
         $success = $statement->execute();
-        echo "success " .$success;
+        //echo "success " .$success;
      //?   
         if($success){
             $prog_id = $connection->insert_id;
@@ -227,7 +227,7 @@
     
       function deleteEmployee($emp_id){
         global $connection;
-        echo 'emp id ' .$emp_id;
+        //echo 'emp id ' .$emp_id;
         $query = "DELETE FROM employees WHERE emp_id ='$emp_id' ";
         $statement= $connection->prepare($query);
          if($statement == false){
@@ -362,7 +362,7 @@
    $reportedByDate, $functionalArea, $assignedTo, $comments, $status, $priority, $resolution, $resolutionVersion,
    $resolvedBy, $resolvedByDate, $testedBy, $testedByDate, $deferred,$prog_id ){
         global $connection; 
-        echo "adding bugs......";
+        //echo "adding bugs......";
         
 //   echo 'prog id: '.$prog_id.'<br/>';
 //   echo 'report type: '.$reportType.'<br/>';
@@ -416,7 +416,9 @@
    /* list all bugs */
     function getBugs(){
         global $connection; 
-        $query = 'SELECT * FROM bugs ORDER BY bug_id';
+        $query = 'SELECT bugs.*, programs.program, programs.program_release, programs.program_version, report.name as reportName FROM bugs'. 
+					' LEFT JOIN programs ON bugs.prog_id = programs.prog_id'.
+					' LEFT JOIN employees report ON bugs.reportedBy = report.emp_id ORDER BY bug_id';
         $result = $connection->query($query); 
         if($result == false){
             display_db_error($connection->error);
@@ -432,7 +434,13 @@
 
     function getBug($bug_id){
         global $connection; 
-        $query = "SELECT * FROM bugs WHERE bug_id ='$bug_id'";
+        $query = "SELECT bugs.*, programs.program, programs.program_release, programs.program_version, report.name as reportName, assign.name as assignName, resolve.name as resolveName, test.Name as testName, areas.area FROM bugs". 
+					" LEFT JOIN programs ON bugs.prog_id = programs.prog_id".
+					" LEFT JOIN employees report ON bugs.reportedBy = report.emp_id".
+					" LEFT JOIN employees assign ON bugs.assignedTo = assign.emp_id".
+					" LEFT JOIN employees resolve ON bugs.resolvedBy = resolve.emp_id".
+					" LEFT JOIN employees test ON bugs.testedBy = test.emp_id".
+					" LEFT JOIN areas ON bugs.functionalArea = areas.area_id WHERE bug_id ='$bug_id'";
         $result = $connection->query($query); 
         if($result == false){
             display_db_error($connection->error);
@@ -466,20 +474,20 @@
                         priority = '$priority' ,
                         resolution = '$resolution' ,
                         resolutionVersion = '$resolutionVersion' ,
-                        resolvedBy = '$resolvedBy' ,
-                        resolvedByDate = '$resolvedByDate' ,
-                        testedBy = '$testedBy' ,
-                        testedByDate = '$testedByDate' ,
-                        treatAsDeferred = '$deferred' ,
-                        prog_id = '$prog_id',
+                        resolvedBy = '$resolvedBy' ,";		
+        if ($resolvedByDate!=null) $query = $query . "resolvedByDate = '$resolvedByDate' ,";
+		$query = $query . "testedBy = '$testedBy' ,";
+        if ($testedByDate!=null) $query = $query . "testedByDate = '$testedByDate' ,";
+        $query = $query . "treatAsDeferred = '$deferred' ,
+                        prog_id = '$prog_id' 
                     WHERE bug_id = '$bug_id'";
-        
+		
         $Statement = $connection->prepare($query);
         
         if($Statement == false){
             display_db_error($connection->error);
         }
-        
+		
         $success = $Statement->execute();
         
         return $success;
