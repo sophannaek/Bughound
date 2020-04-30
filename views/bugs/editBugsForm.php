@@ -44,7 +44,13 @@ $prog = getProgram($progid);
 				<option value=" " selected disabled hidden> <?php echo $prog['program'] ?> </option> 
 				<?php
 					foreach($programs as $program){
+						
+						if($program == $prog['program']){
+						echo "<option value ='".$program['prog_id']."' selected>".$program['program']."</option>";	
+						}else{
+							
 						echo "<option value ='".$program['prog_id']."'>".$program['program']."</option>";
+						}
 					}
 
 				?>
