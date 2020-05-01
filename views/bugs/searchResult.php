@@ -107,12 +107,15 @@
 			</tr>
 			<?php
 				foreach($bugs as $bug) {
+					
 					echo "<tr>";
 					// clicl bug_id can go to edit page
 					echo "<td><a href='editBugsForm.php?bid=" . $bug['bug_id'] . "'>" . $bug['bug_id'] . "</a></td>";
 					echo "<td>" . $bug['program'] . " " . $bug['program_release'] . "," . $bug['program_version'] . "</td>";
 					echo "<td>" . $bug['problemSummary'] . "</td>";
 					echo "</tr>";
+			
+				
 				}
 			?>
 		</table></center>

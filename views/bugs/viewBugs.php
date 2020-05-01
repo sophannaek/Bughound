@@ -54,13 +54,22 @@
 		echo '<tr>';
 
 		if($userlevel >=2 ){
-			echo "<td><a href='editBugsForm.php?bid=".$bug['bug_id']."'>".$bug['bug_id'];
+			if($bug['bugStatus']!="Closed"){
+				echo "<td><a href='editBugsForm.php?bid=".$bug['bug_id']."'>".$bug['bug_id'];
+			}
+			
 		}
 		else{
-			echo "<td>".$bug['bug_id'];
+			if($bug['bugStatus']!="Closed"){
+				echo "<td>".$bug['bug_id'];
+			}
+			
 		}
-		echo '</td><td>'.$bug['program'].' '.$bug['program_release'].','.$bug['program_version'].'</td><td>'.$bug['reportType'].'</td><td>'.$bug['severity'].'</td><td>'.$bug['problemSummary'].'</td>'
+		if($bug['bugStatus']!="Closed"){
+			echo '</td><td>'.$bug['program'].' '.$bug['program_release'].','.$bug['program_version'].'</td><td>'.$bug['reportType'].'</td><td>'.$bug['severity'].'</td><td>'.$bug['problemSummary'].'</td>'
 			.'<td>'.$bug['problem'].'</td><td>'.$bug['reportName'].'</td><td>'.$bug['reportedByDate'].'</td>';
+		}
+		
 		
 	}
 	

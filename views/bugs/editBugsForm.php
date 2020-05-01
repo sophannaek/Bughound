@@ -41,10 +41,10 @@ $attachments = getAttachments($bug_id);
 			<input type="hidden" id='bug_id' name='bug_id' value='<?php echo $bug_id; ?>'>
 			<label>Program</label>
 			<select id='prog_id' name='prog_id'>
-				<option value="<?php echo $prog['prog_id']; ?>" selected hidden> <?php echo $prog['program']; ?> </option> 
+				<option value="<?php echo $prog['prog_id']; ?>" selected hidden> <?php echo $prog['program'].' '. $prog['program_release'].' '.$prog['program_version'];?> </option> 
 				<?php
 					foreach($programs as $program){
-						echo "<option value ='".$program['prog_id']."'>".$program['program']."</option>";
+						echo "<option value ='".$program['prog_id']."'>".$program['program'].' '.$program['program_release'].' '.$prog['program_version']."</option>";
 					}
 				?>
 			
