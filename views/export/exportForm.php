@@ -23,9 +23,34 @@
 		<meta charset="UTF-8">
 		<title>Export</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 	</head>
 	
 	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Bughound</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="../../homepage.php">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../dbmaintenance.php">Database Maintenance</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Export<span class="sr-only">(current)</span></a>
+					</li>
+					
+				</ul>
+				<span class="navbar-text">
+				Welome back <b><i><?php  echo $user ?> </i></b> !
+			</span>
+			</div>
+		</nav>
 		<div class="container">
 			<br>
 			<center><h2>Export</h2></center>
@@ -41,9 +66,9 @@
 					<option value="ASCII" <?php if(strcmp($type, 'ASCII')==0) echo 'selected'; ?>>ASCII</option>
 					<option value="XML" <?php if(strcmp($type, 'XML')==0) echo 'selected'; ?>>XML</option>
 				</select>
-				<button type="submit" formatted="post">download</button>
-				<button type="submit" formaction="#" formatted="post" >display</button>
-				<button type="button" onclick="window.location.href = '../dbmaintenance.html';">cancel</button>
+				<button type="submit" formatted="post" class='btn btn-light'>download</button>
+				<button type="submit" formaction="#" formatted="post" class='btn btn-info'>display</button>
+		
 			</form><center>
 		</div>
 		<br>

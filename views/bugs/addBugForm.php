@@ -12,9 +12,6 @@
 	$programs = getPrograms();
 	$employees = getEmployees();
 	$areas = getAllAreas();
-	// if($bug['problem']== '' || $bug['problemSummary']){
-	// 	$error="<span style='color:red'>Not all required fields were entered!</span> ";
-	// }
 
 	
 ?>
@@ -28,8 +25,31 @@
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 	</head>
 	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Bughound</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="../../homepage.php">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">User Level: <?php echo $userlevel ; ?></a>
+				</li>
+		
+				</ul>
+				<span class="navbar-text">
+				Welome back <b><i><?php  echo $user ?> </i></b> !
+				</span>
+			</div>
+		</nav>
+	<div class='container-fluid'>
 		<center><h3>New Bug Report Entry Page</h3></center>
 		<hr/>
 		<form action='addBugs.php' method='post'  onsubmit="return validate(this)">
@@ -60,7 +80,7 @@
 			</select>
 			<p>
 			<label>Problem Summary: </label>
-				<input type='text' id='prob_summary' name='prob_summary' size='50' />
+				<input type='text' id='prob_summary' name='prob_summary' size='100' />
 			<label>Reproducible? </label>
 			<!-- <input type='checkbox' id='reproducible' name='reproducible'> -->
 			<select id='reproducible' name='reproducible'>
@@ -190,9 +210,9 @@
 			</p>
 			<p><?php if (isset($error)) echo $error; ?></p>
 			<p>
-				<input type="submit" name="submit" value="Submit">
-				<button type='reset'>Reset</button>
-				<button type='button' onclick="window.location.href = '../../homepage.php';">Cancel</button>
+				<button type='button' onclick="window.location.href = '../../homepage.php';" class='btn btn-danger'>Cancel</button>
+				<button type='reset' class='btn btn-warning'>Reset</button>
+				<input type="submit" class='btn btn-dark' name="submit" value="Submit">
 			</p>
 		</form>
 		
@@ -215,30 +235,8 @@
 			
 			return true; 
 		}
-		
-		/*document.getElementById("reset").addEventListener("click", function(){
-			document.getElementById("prog_name").selectedIndex='0';
-			document.getElementById("reportType").selectedIndex='0';
-			document.getElementById("severity").selectedIndex='0';
-			document.getElementById('reproducible').checked = false;
-			document.getElementById("prob_summary").value = "";
-			document.getElementById('problem').value ="";
-			document.getElementById("reportedBy").selectedIndex='0';
-			document.getElementById('reportedByDate').value ='';		
-			document.getElemnetById('functional_area').selectedIndex ='0';
-			document.getElemnetById('assignedTo').selectedIndex ='0';
-			document.getElementById('comments').value ="";
-			document.getElemnetById('status').selectedIndex ='0';
-			document.getElemnetById('priority').selectedIndex ='0';
-			document.getElemnetById('resolution').selectedIndex ='0';
-			document.getElementById('resolutionVersion').value='';
-			document.getElementById('resolvedBy').selectedIndex='0';
-			document.getElementById('resolvedByDate').value='';
-			document.getElementById('testedBy').selectedIndex = '0';
-			document.getElementById('testedByDate').value = '';
-
-			document.getElementById('deferred').checked = false;
-		});*/
+		</div>
+	
 	</script>
 	
 </html>

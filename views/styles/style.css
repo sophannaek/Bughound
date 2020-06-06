@@ -1,5 +1,7 @@
-a{
+ul.div li a{
 	text-decoration: none;
+	color: gray !important;
+	
 }
 ul{
 	list-style-type: none;
@@ -37,7 +39,9 @@ ul{
 }
 li {
 	padding:0.5em 0.5em;
+	
 }
+
 /* a:hover{
 	color:gray;
 } */

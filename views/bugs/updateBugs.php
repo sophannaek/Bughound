@@ -20,17 +20,7 @@ $resolvedBy =$_POST['resolvedBy'];
 $testedBy = $_POST['testedBy'];
 $reproducible =$_POST['reproducible'];
 $deferred = $_POST['deferred'];
-// if(!empty($_POST['reproducible'])){
-//     $reproducible =1 ;
-//     // echo "not empty";
-// }else{
-//     $reproducible =0;
-// }
-// if(!empty($_POST['deferred'])){
-//     $deferred = 1;
-// }else{
-//     $deferred = 0;
-// }
+
 
 if($_POST['resolvedByDate'] === ''){
     $resolvedByDate = NULL;

@@ -19,16 +19,40 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Bughound - Search Bugs</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	</head>
 	
 	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Bughound</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="../../homepage.php">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../dbmaintenance.php">Database Maintenance</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Bugs<span class="sr-only">(current)</span></a>
+					</li>
+					
+				</ul>
+				<span class="navbar-text">
+				Welome back <b><i><?php  echo $user ?> </i></b> !
+			</span>
+			</div>
+		</nav>
 		<center><h3>Search Bugs</h3></center>
 		<hr/>
 		<center>
 			<form action='searchResult.php' method='post'>
 				<label>Problem: </label>
 				<input type='text' id='problem' name='problem' style='width:350'>
-				<input type='submit' name='quick' value='quick search'>
+				<input type='submit' name='quick' value='quick search' class='btn btn-info'>
 				<table width='400'>
 					<tr>
 						<th width='40%'></th>
@@ -129,9 +153,9 @@
 					</tr>
 				</table>
 				<hr/>
-				<input type="submit" name="submit" value="Submit">
-				<button type='reset' id='reset'>Reset</button>
-				<button type='button' onclick="window.location.href = '../../homepage.php';">Cancel</button>
+				<button type='reset' id='reset' class='btn btn-warning'>Reset</button>
+				<input type="submit" name="submit" value="Submit" class='btn btn-secondary'>
+				
 			</form>
 		</center>
 	</body>

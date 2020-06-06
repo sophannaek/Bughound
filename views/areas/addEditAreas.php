@@ -17,9 +17,35 @@
 		<meta charset="UTF-8">
 		<title>Add/Edit Areas</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 	</head>
 	
 	<body>
+
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Bughound</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="../../homepage.php">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../dbmaintenance.php">Database Maintenance</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Add/Edit Area <span class="sr-only">(current)</span></a>
+					</li>
+					
+				</ul>
+				<span class="navbar-text">
+				Welome back <b><i><?php  echo $user ?> </i></b> !
+			</span>
+			</div>
+		</nav>
 		<div class="container">
 			<br>
 			<center><h2>Add/Edit Area</h2></center>
@@ -33,7 +59,7 @@
 						}
 					?>
 				</select>
-				<button type="submit" formatted="get" value="submit">submit</button>
+				<button type="submit" formatted="get" value="submit" class='btn btn-dark'>submit</button>
 				</form>
 			</center>
 			<?php
@@ -42,7 +68,7 @@
 				}
 				else {
 					echo "<center><h2>" . $prog['program'] . "-" . $prog['program_release'] . "-" . $prog['program_version'] . "</h2></center>";
-					echo "<center><table frame=\"box\" style=\"border:2px solid\" border=1>";
+					echo "<center><table class='table table-striped' frame=\"box\" style=\"border:2px solid\" border=1>";
 					echo "<tr><th>Area ID</th><th>Program ID</th><th>Area</th><th></th></tr>";
 					foreach ($areas as $area) {
 						echo "<tr>";
@@ -50,7 +76,8 @@
 							echo "<td>" . $area['area_id'] . "<input type=\"hidden\" name=\"area_id\" value=" . $area['area_id'] . "> </td>";
 							echo "<td>" . $area['prog_id'] . "<input type=\"hidden\" name=\"prog_id\" value=" . $area['prog_id'] . "> </td>";
 							echo "<td><input type=\"text\" name=\"area\" value=\"" . $area['area'] . "\" size=50 id=\"area\">";
-							echo "<td><button type=\"submit\" name=\"update\">update</button>  <input type=\"button\" value=\"delete\" onclick=\"location.href='deleteArea.php?area_id=" . $area['area_id'] . "&prog_id=" . $area['prog_id'] . "'\"></td>";
+							echo "<td><button class='btn btn-warning' type=\"submit\" name=\"update\">update</button>  <input type=\"button\"  class='btn btn-danger'
+							value=\"delete\" onclick=\"location.href='deleteArea.php?area_id=" . $area['area_id'] . "&prog_id=" . $area['prog_id'] . "'\"></td>";
 						echo "</form>";
 						echo "</tr>";
 					}
@@ -60,14 +87,13 @@
 						echo "<td>Add</td>";
 						echo "<td>" . $prog_id . "<input type=\"hidden\" name=\"prog_id\" value=" . $prog_id . "> </td>";
 						echo "<td><input type=\"text\" name=\"area\" size=50 id=\"area\"></td>";
-						echo "<td><button type=\"submit\" formatted=\"post\" name=\"addArea\">Add Area</button></td>";
+						echo "<td><button type=\"submit\" formatted=\"post\" name=\"addArea\" class='btn btn-dark'>Add Area</button></td>";
 					echo "</form>";
 					echo "</tr>";
 					echo "</table></center>";
 				}
 			?>
-			<br>
-			<center><a href='../dbmaintenance.html'>Back to Database Maintenance</a></center>
+			
 		</div>
 	</body>
 </html>

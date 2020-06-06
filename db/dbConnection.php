@@ -56,9 +56,7 @@
 
     /* add a program */
     function addProgram($prog_name, $prog_release, $prog_version){
-        global $connection; 
-        //echo "inside add program<br/>";
-        //echo $prog_name, $prog_release, $prog_version ."<br/>";
+        global $connection;
         
       //  $query= "INSERT INTO programs (program_name, program_release, program_version) VALUES ('$prog_name','$prog_release', '$prog_version')";
 
@@ -81,7 +79,7 @@
         }else{
             $message="<span style='color:red'>A new program failed to be added.</span>";
         }
-        echo $message; 
+      //  echo $message; 
     }
    /* update a program */
     function updateProgram($prog_id,$prog_name, $prog_release, $prog_version){
@@ -126,7 +124,7 @@
       //  echo $success;
         if($success){
           $statement->close();
-          echo "deleting....";
+        //   echo "deleting....";
           return $success;
         }else {
           display_db_error($connection->error);
@@ -362,27 +360,6 @@
    $reportedByDate, $functionalArea, $assignedTo, $comments, $status, $priority, $resolution, $resolutionVersion,
    $resolvedBy, $resolvedByDate, $testedBy, $testedByDate, $deferred,$prog_id ){
         global $connection; 
-        //echo "adding bugs......";
-        
-//   echo 'prog id: '.$prog_id.'<br/>';
-//   echo 'report type: '.$reportType.'<br/>';
-//   echo 'serverity: '.$severity.'<br/>';
-//   echo "problem summary..".$problem_summary.'<br/>';
-   echo 'reproducilbe: '.$reproducible.'<br/>';
-//   echo 'reportedBy: '.$reportedBy.'<br/>';
-//   echo 'reportedByDate: '.$reportedByDate.'<br/>';
-//   echo 'functional area: '.$functionalArea.'<br/>';
-//   echo 'assignTo: '.$assignedTo.'<br/>';
-//   echo 'comment: '.$comments.'<br/>';
-//   echo 'status: '.$status.'<br/>';
-//   echo 'priority: '.$priority.'<br/>';
-//   echo 'resolution: '.$resolution.'<br/>';
-//   echo 'resolutionversion: '.$resolutionVersion.'<br/>';
-//   echo 'resolvedBy: '.$resolvedBy.'<br/>';
-//   echo 'resolvedByDate: '.$resolvedByDate.'<br/>';
-//   echo 'testedBy: '.$testedBy.'<br/>';
-  
-
         $query="INSERT INTO bugs
         (reportType, severity, problemSummary,reproducible,problem,suggestedFix, reportedBy,
         reportedByDate,functionalArea, assignedTo,comments,bugStatus,priority, resolution,resolutionVersion,
@@ -397,19 +374,22 @@
         }
         $success = $statement->execute();
 
-            if($success){
-                $bug_id = $connection->insert_id;
-                echo "<span style='color:green'>A new bug was added.</span>";
-                $statement->close();
-                
-                return $bug_id;
-                
-            }else{
-                $message="<span style='color:red'>A new bug failed to be added.</span>";
-                
-                echo $connection->error;
-            }
+        if($success){
+            $bug_id = $connection->insert_id;
+            echo "<span style='color:green'>A new bug was added.</span>";
+            $statement->close();
+            
+            return $bug_id;
+            
+        }else{
+            $message="<span style='color:red'>A new bug failed to be added.</span>";
+            // echo $connection->error;
             echo $message;
+           
+        }
+         
+
+        
          
    }
 

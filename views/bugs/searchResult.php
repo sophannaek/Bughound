@@ -94,35 +94,62 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Bughound - Search Bugs</title>
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	</head>
 	
 	<body>
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Bughound</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="../../homepage.php">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="../dbmaintenance.php">Database Maintenance</a>
+					</li>
+					<li class="nav-item active">
+						<a class="nav-link" href="#">Bugs<span class="sr-only">(current)</span></a>
+					</li>
+					
+				</ul>
+				<span class="navbar-text">
+				Welome back <b><i><?php  echo $user ?> </i></b> !
+			</span>
+			</div>
+			</nav>
 		<center><h3>Search Bugs Result</h3></center>
 		<hr/>
-		<center><table width='600' frame='box' style='border:2px solid' border='1'>
-			<tr>
-				<th width='10%'><center>Bug ID</center></th>
-				<th width='20%'><center>Program</center></th>
-				<th width='70%'><center>Summary</center></th>
-			</tr>
-			<?php
-				foreach($bugs as $bug) {
+		<div class='container'>
+
+			<center><table class='table table-striped' width='600' frame='box' >
+				<tr>
+					<th width='10%'><center>Bug ID</center></th>
+					<th width='20%'><center>Program</center></th>
+					<th width='70%'><center>Summary</center></th>
+				</tr>
+				<?php
+					foreach($bugs as $bug) {
+						
+						echo "<tr>";
+						// clicl bug_id can go to edit page
+						echo "<td><a href='editBugsForm.php?bid=" . $bug['bug_id'] . "'>" . $bug['bug_id'] . "</a></td>";
+						echo "<td>" . $bug['program'] . " " . $bug['program_release'] . "," . $bug['program_version'] . "</td>";
+						echo "<td>" . $bug['problemSummary'] . "</td>";
+						echo "</tr>";			
 					
-					echo "<tr>";
-					// clicl bug_id can go to edit page
-					echo "<td><a href='editBugsForm.php?bid=" . $bug['bug_id'] . "'>" . $bug['bug_id'] . "</a></td>";
-					echo "<td>" . $bug['program'] . " " . $bug['program_release'] . "," . $bug['program_version'] . "</td>";
-					echo "<td>" . $bug['problemSummary'] . "</td>";
-					echo "</tr>";
-			
+					}
+				?>
+			</table></center>
+			<hr/>
+			<center>
+				<button type='button' onclick="window.location.href = '../../homepage.php';" class='btn btn-warning'>Cancel</button>
+				<button type='button' onclick="window.location.href = 'searchBugs.php'" class='btn btn-secondary'>Modify Search</button>
 				
-				}
-			?>
-		</table></center>
-		<hr/>
-		<center>
-			<button type='button' onclick="window.location.href = 'searchBugs.php'">Modify Search</button>
-			<button type='button' onclick="window.location.href = '../../homepage.php';">Cancel</button>
-		</center>
+			</center>
+				</div>
 	</body>
 </html>

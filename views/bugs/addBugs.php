@@ -20,19 +20,6 @@
   // $resolvedByDate = $_POST['resolvedByDate'];
   $testedBy = $_POST['testedBy'];
   $deferred = $_POST['deferred'];
-  // if(empty($_POST['reproducible'])){
-  //    $reproducible =0 ;
-  //    //echo "... empty...";
-  // }else{
-  //   $reproducible = 1; 
-  //   //echo " not empty...";
-  // }
-
-  // if(!empty($_POST['deferred'])){
-  //   $deferred = 1;
-  // }else{
-  //   $deferred = 0; 
-  // }
   if(!$_POST['assignedTo'] === ''){
     $assignedTo =$_POST['assignedTo'] ;
    // echo "not empty";
@@ -72,5 +59,8 @@
    $functionalArea,$assignedTo, $comments, $status,$priority, $resolution, $resolutionVersion, $resolvedBy,$resolvedByDate, $testedBy, 
    $testedByDate, $deferred,$prog_id);
 
-   include 'viewBugs.php';
+   if($bug_id){
+    include 'viewBugs.php';
+   }
+   
 ?>

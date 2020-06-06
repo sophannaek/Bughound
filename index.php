@@ -30,34 +30,31 @@
 	
 ?>
 
-
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8">
 		<title>Login</title>
 		<link rel="stylesheet" type="text/css" href="./views/styles/style.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	</head>
 	<body>
-		<div class='container' id='login-form' style='margin-top:3em;width:40%; margin-left:20%' >
-		
-			<form action='index.php'  method='post'>
-					<center><h3>Bughound Software</h3></center>
+		<div class='container' id='login-form' style='margin-top:3em;width:50%; margin-left:25%' >
+			<form action='index.php' method='post'>
+				<h2 style="color: #14415C">Bughound Software</h2>
+				<div class="form-group" >
+					
+					<input type="text" class="form-control" id='username' name='username' placeholder="Username">
+					<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+				</div>
+				<div class="form-group">
+					<input type="text" class="form-control" name='password' id='password' placeholder="Password" >
+				</div>
+				<p><?php if (isset($error)) echo $error; ?></p>
 			
-					<input type='text' id='username' placeholder='  username' name='username'/><br/><br/>
-					<p>
-
-					<input type='text' id='password' placeholder='  password' name='password'/></p>
-					<p><?php if (isset($error)) echo $error; ?></p>
-					<p><input type="submit" id='submit-btn' name="submit"  value="Submit"></p>
-					</center>
-					<center>
-					<!-- <p style='color:#0B4C5F'>Forgot Password?</p> -->
-						
-						
-					</center>
-				<!-- </fieldset> -->
+				<input type="submit" name='submit' class="btn btn-dark" value='Submit' />
 			</form>
+			
 		</div>
 
 	</body>

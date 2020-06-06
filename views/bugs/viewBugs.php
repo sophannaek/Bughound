@@ -9,9 +9,6 @@
         echo "please login";
     }
 	$bugs = getBugs();
-	
-	
-	
 ?>
 
 <!DOCTYPE html>
@@ -20,11 +17,33 @@
 		<meta charset="UTF-8">
 		<title>View Bugs</title>
 		<link rel="stylesheet" type="text/css" href="style.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 		<style>
 			
 		</style>
 	</head>
 	<body>
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+			<a class="navbar-brand" href="#">Bughound</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarText">
+				<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="../../homepage.php">Home</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="#">User Level: <?php echo $userlevel ; ?></a>
+				</li>
+		
+				</ul>
+				<span class="navbar-text">
+				Welome back <b><i><?php  echo $user ?> </i></b> !
+				</span>
+			</div>
+		</nav>
 	<?php 
 		if($userlevel == 1 ){
 			echo "<div style='margin-top:5%'>
@@ -45,7 +64,7 @@
 <?php
 
 
-  	echo "<center><table style='width:1500px;text-align:center;border-bottom:1px solid lightgrey;'><tr><th width='3%'>Bug ID</th><th width='10%'>Program</th>".
+  	echo "<center><table class='table table-striped' frame='box'><tr><th width='3%'>Bug ID</th><th width='10%'>Program</th>".
       "<th width='7%'>Report Type</th><th width='8%'>Severity</th><th width='17%'>Problem Summary</th><th width='40%'>Problem</th>".
 	  "<th width='7%'>Reported By</th><th width='8%'>Reported Date</th></tr>";
 
@@ -69,16 +88,12 @@
 			echo '</td><td>'.$bug['program'].' '.$bug['program_release'].','.$bug['program_version'].'</td><td>'.$bug['reportType'].'</td><td>'.$bug['severity'].'</td><td>'.$bug['problemSummary'].'</td>'
 			.'<td>'.$bug['problem'].'</td><td>'.$bug['reportName'].'</td><td>'.$bug['reportedByDate'].'</td>';
 		}
-		
-		
 	}
 	
 	echo "</tr></table></center>";
 
 ?>
-<div class="container" style='margin-top:2em'>
-	<center><button type='button' onclick="window.location.href = '../../homepage.php';" >Homepage</button></center>
-</div>
+
 
 </body>
 </html>
