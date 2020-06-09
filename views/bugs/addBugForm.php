@@ -52,9 +52,11 @@
 	<div class='container-fluid'>
 		<center><h3>New Bug Report Entry Page</h3></center>
 		<hr/>
+
 		<form action='addBugs.php' method='post'  onsubmit="return validate(this)">
 			<label>Program</label>
 			<select id='prog_name' name='prog_id'>
+				<option value=''>select</option>
 				<?php
 					foreach($programs as $program){
 						echo "<option value ='".$program['prog_id']."'>".$program['program']." ".$program['program_release'].",".$program['program_version']."</option>";
@@ -219,15 +221,16 @@
 	</body>
 	<script>
 		function validate(theform){
+			if(theform.problem.value ===""){
+				alert("Please select a program " );
+				return false;
+			}
+
 			if(theform.prob_summary.value===""){
 				alert("Problem Summary field cannot be empty " );
 				return false;
 			}
-			if(theform.problem.value ===""){
-				alert("Program cannot be empty " );
-				return false;
-			}
-			if(theform.reportedByDate.value ===""){
+						if(theform.reportedByDate.value ===""){
 				alert("Please enter today's date for this report! " );
 				return false;
 			}
@@ -235,7 +238,7 @@
 			
 			return true; 
 		}
-		</div>
+		
 	
 	</script>
 	

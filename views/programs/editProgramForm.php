@@ -2,11 +2,9 @@
 
 require_once '../../db/dbConnection.php';
 if(isset($_GET['pid'])){
-//	echo "yes";
 	$program_id = $_GET['pid'];
-	// echo $program_id;
 	$program = getProgram($program_id);
-	// echo $program['program'];
+
 }
 
 ?>

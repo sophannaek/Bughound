@@ -2,11 +2,8 @@
 
 require_once '../../db/dbConnection.php';
 if(isset($_GET['eid'])){
-//	echo "yes";
 	$employee_id = $_GET['eid'];
-	// echo $employee_id;
 	$employee = getEmployee($employee_id);
-	//echo $employee['employee'];
 }
 
 ?>

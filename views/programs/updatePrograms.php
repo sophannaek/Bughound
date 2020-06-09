@@ -9,12 +9,8 @@
     require_once '../../db/dbConnection.php';
   
     if($action =="Update Program"){
-        //echo "updating the program";
         updateProgram($prog_id,$prog_name, $prog_release, $prog_version);
-
       }else{
-        
-       // echo "deleting the program<br/>";
         $delete = deleteProgram($prog_id);
       }
 

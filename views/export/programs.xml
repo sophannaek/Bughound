@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<programs>
+  <prog_id>4</prog_id>
+  <program>Ada95 Coder</program>
+  <program_release>1</program_release>
+  <program_version>1</program_version>
+</programs>
+<programs>
+  <prog_id>5</prog_id>
+  <program>Bughound</program>
+  <program_release>1</program_release>
+  <program_version>1</program_version>
+</programs>
+<programs>
+  <prog_id>6</prog_id>
+  <program>COBOL Coder</program>
+  <program_release>1</program_release>
+  <program_version>1</program_version>
+</programs>
+<programs>
+  <prog_id>7</prog_id>
+  <program>COBOL Coder</program>
+  <program_release>1</program_release>
+  <program_version>2</program_version>
+</programs>
+<programs>
+  <prog_id>8</prog_id>
+  <program>COBOL Coder</program>
+  <program_release>2</program_release>
+  <program_version>1</program_version>
+</programs>
+<programs>
+  <prog_id>9</prog_id>
+  <program>Pascal Coder</program>
+  <program_release>1</program_release>
+  <program_version>1</program_version>
+</programs>
+<programs>
+  <prog_id>10</prog_id>
+  <program>Word Writer 2019</program>
+  <program_release>1</program_release>
+  <program_version>1</program_version>
+</programs>
+<programs>
+  <prog_id>11</prog_id>
+  <program>Word 2000</program>
+  <program_release>1</program_release>
+  <program_version>1</program_version>
+</programs>

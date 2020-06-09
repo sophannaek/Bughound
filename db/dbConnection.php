@@ -14,7 +14,7 @@
     /* display error */
     function display_db_error($error_message){
         global $app_path;
-        echo $error_message;
+        // echo $error_message;
         exit;
     }
 
@@ -68,7 +68,7 @@
         }
         $statement->bind_param("sii",$prog_name, $prog_release,$prog_version);
         $success = $statement->execute();
-        //echo "success " .$success;
+  
         
         if($success){
             $prog_id = $connection->insert_id;
@@ -84,7 +84,6 @@
    /* update a program */
     function updateProgram($prog_id,$prog_name, $prog_release, $prog_version){
         global $connection;
-        // $product_id_esc = $connection->escape_string($product_id);
         $query = "UPDATE programs
                     SET program = ?,
                         program_release = ?,
@@ -97,7 +96,6 @@
         $statement->bind_param("siii",$prog_name, $prog_release,$prog_version,$prog_id);
         $success = $statement->execute();
         if($success){
-            // $product_id = $connection->insert_id;
             $row_count = $connection->affected_rows;
             $statement->close();
             return $row_count;
@@ -112,7 +110,7 @@
     /* delete a program */
     function deleteProgram($prog_id){
         global $connection;
-        //echo 'prog id ' .$prog_id;
+
         $query = "DELETE FROM programs WHERE prog_id ='$prog_id' ";
         $statement= $connection->prepare($query);
          if($statement == false){
@@ -120,11 +118,10 @@
         }
         $statement->bind_param("i",$prog_id);
         $success = $statement->execute(); 
-       
-      //  echo $success;
+
         if($success){
           $statement->close();
-        //   echo "deleting....";
+
           return $success;
         }else {
           display_db_error($connection->error);
@@ -168,8 +165,6 @@
     
     function addEmployee($user_id, $user_name,$user_password,$user_level){
         global $connection; 
-        //echo "inside add employee<br/>";
-        //echo $user_id, $user_name,$user_password,$user_level ."<br/>";
         
       //  $query= "INSERT INTO programs (program_name, program_release, program_version) VALUES ('$prog_name','$prog_release', '$prog_version')";
 
@@ -181,8 +176,7 @@
         }
         $statement->bind_param("sssi",$user_id, $user_name,$user_password,$user_level);
         $success = $statement->execute();
-        //echo "success " .$success;
-     //?   
+ 
         if($success){
             $prog_id = $connection->insert_id;
             $statement->close();
@@ -192,13 +186,12 @@
         }else{
             $message="<span style='color:red'>A new program failed to be added.</span>";
         }
-        echo $message; 
+        // echo $message; 
     }
     
           /* update a program */
     function updateEmployee($emp_id, $user_id, $user_name, $user_password, $user_level){
         global $connection;
-        // $product_id_esc = $connection->escape_string($product_id);
         $query = "UPDATE employees
                     SET name = ?,
                         username = ?,
@@ -212,7 +205,6 @@
         $statement->bind_param("sssii",$user_id, $user_name, $user_password, $user_level,$emp_id);
         $success = $statement->execute();
         if($success){
-            // $product_id = $connection->insert_id;
             $row_count = $connection->affected_rows;
             $statement->close();
             return $row_count;
@@ -225,19 +217,17 @@
     
       function deleteEmployee($emp_id){
         global $connection;
-        //echo 'emp id ' .$emp_id;
         $query = "DELETE FROM employees WHERE emp_id ='$emp_id' ";
         $statement= $connection->prepare($query);
          if($statement == false){
           display_db_error($connection->error);
         }
-        //$statement->bind_param("i",$emp_id);
+
         $success = $statement->execute(); 
        
-      //  echo $success;
         if($success){
           $statement->close();
-          echo "deleting....";
+        
           return $success;
         }else {
           display_db_error($connection->error);
@@ -376,7 +366,7 @@
 
         if($success){
             $bug_id = $connection->insert_id;
-            echo "<span style='color:green'>A new bug was added.</span>";
+            // echo "<span style='color:green'>A new bug was added.</span>";
             $statement->close();
             
             return $bug_id;

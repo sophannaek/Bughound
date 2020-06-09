@@ -25,6 +25,8 @@
 		
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="./styles/style.css">
+		<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
+
 	</head>
 	<body>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -38,7 +40,7 @@
 					<a class="nav-link" href="../homepage.php">Home</a>
 				</li>
 				<li class="nav-item active">
-					<a class="nav-link" href="#">Database Maintenance</a>
+					<a class="nav-link" href="#">Database Maintenance</a>boo
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="#">User Level: <?php echo $userlevel ; ?></a>

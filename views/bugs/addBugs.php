@@ -17,12 +17,11 @@
   $resolution = $_POST['resolution'];
   $resolutionVersion = $_POST['resolutionVersion'];
   $resolvedBy =$_POST['resolvedBy'];
-  // $resolvedByDate = $_POST['resolvedByDate'];
   $testedBy = $_POST['testedBy'];
   $deferred = $_POST['deferred'];
   if(!$_POST['assignedTo'] === ''){
     $assignedTo =$_POST['assignedTo'] ;
-   // echo "not empty";
+
   }else{
     $assignedTo = 0;  
   }
@@ -36,7 +35,7 @@
     $resolvedByDate = NULL; 
   }else{
    $resolvedByDate = $_POST['resolvedByDate'] ;
-   //echo "resolvedbydate:....".$resolvedByDate."<br/>";
+   
   }
   if(!$_POST['assignedTo'] === ''){
     $testedBy =$_POST['testedBy'] ;

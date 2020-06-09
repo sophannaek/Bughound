@@ -1,6 +1,5 @@
 <?php
 $bug_id = $_POST['bug_id'];
-//echo $bug_id;
 $prog_id = $_POST['prog_id'];
 $reportType = $_POST['reportType'];
 $severity = $_POST['serverity'];
@@ -26,7 +25,6 @@ if($_POST['resolvedByDate'] === ''){
     $resolvedByDate = NULL;
 }else{
     $resolvedByDate = $_POST['resolvedByDate'] ;
-    //echo "resolvedbydate:....".$resolvedByDate."<br/>";
 }
 if($_POST['testedByDate'] === ''){
     $testedByDate = NULL;

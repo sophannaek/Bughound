@@ -10,12 +10,9 @@
     require_once '../../db/dbConnection.php';
   
     if($action =="Update Employee"){
-        //echo "updating the program";
         updateEmployee($emp_id, $user_id, $user_name, $user_password, $user_level);
 
       }else{
-        
-       // echo "deleting the program<br/>";
         $delete = deleteEmployee($emp_id);
       }
 

@@ -9,7 +9,6 @@
   //connect the database
   require_once '../../db/dbConnection.php'; 
   $emp_added_id = addEmployee($user_id, $user_name,$user_password,$user_level);
- // echo "the program id is";echo $prog_added_id;
   $employees = getEmployees();
   include 'viewEmployees.php';
 ?>
